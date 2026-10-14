@@ -91,8 +91,10 @@ function summarize(i) {
 /* ----------------------------------------------------------- incidents */
 
 function buildIncident(d, f, { channel, transcript, createdAt }) {
-  const area = f.area && AREAS[f.area] ? f.area : null;
-  const base = area ? AREAS[area] : CITY;
+  const local = f.area && AREAS[f.area] ? f.area : null;
+  const place = local ? null : findPlace(f.area, f.landmark);
+  const area = local || (f.area && f.area !== "Other" ? f.area : place);
+  const base = local ? AREAS[local] : place ? PLACES[place] : CITY;
   const jitter = () => (Math.random() - 0.5) * 0.006;
   const at = createdAt || Date.now();
   const inc = {
@@ -170,11 +172,35 @@ function forecast(d) {
 
 /* ------------------------------------------------------------- AI layer */
 
+// Towns and cities across Andhra Pradesh and Telangana, so a caller anywhere is placed on the map.
+const PLACES = {
+  Guntur: [16.3067, 80.4365], Vijayawada: [16.5062, 80.648], Amaravati: [16.5131, 80.5165], Mangalagiri: [16.4307, 80.5525],
+  Tenali: [16.243, 80.64], Nambur: [16.372, 80.531], Visakhapatnam: [17.6868, 83.2185], Nellore: [14.4426, 79.9865],
+  Kurnool: [15.8281, 78.0373], Tirupati: [13.6288, 79.4192], Kakinada: [16.9891, 82.2475], Rajahmundry: [17.0005, 81.804],
+  Eluru: [16.7107, 81.0952], Ongole: [15.5057, 80.0499], Anantapur: [14.6819, 77.6006], Kadapa: [14.4673, 78.8242],
+  Machilipatnam: [16.1875, 81.1389], Hyderabad: [17.385, 78.4867], Warangal: [17.9689, 79.5941], Khammam: [17.2473, 80.1514],
+  Nizamabad: [18.6725, 78.0941], Karimnagar: [18.4386, 79.1288], Bhadrachalam: [17.6688, 80.8936],
+};
+const ALIASES = { vizag: "Visakhapatnam", vishakapatnam: "Visakhapatnam", rajamahendravaram: "Rajahmundry", vvit: "Nambur", vvitu: "Nambur", bezawada: "Vijayawada" };
+const norm = (s) => String(s).toLowerCase().replace(/[^a-z]/g, "");
+
 function matchArea(s) {
-  const k = String(s).toLowerCase().replace(/[^a-z]/g, "");
+  const k = norm(s);
   if (!k) return null;
-  for (const a of Object.keys(AREAS)) if (a.toLowerCase().replace(/[^a-z]/g, "") === k) return a;
+  for (const a of Object.keys(AREAS)) if (norm(a) === k) return a;
   return k === "other" ? "Other" : null;
+}
+
+/** A known town/city named in the area or landmark text, if any. */
+function findPlace(...texts) {
+  for (const t of texts) {
+    const k = norm(t || "");
+    if (!k) continue;
+    if (ALIASES[k]) return ALIASES[k];
+    for (const p of Object.keys(PLACES)) if (k.includes(norm(p))) return p;
+    for (const [a, p] of Object.entries(ALIASES)) if (k.includes(a)) return p;
+  }
+  return null;
 }
 
 // The model likes to fill every field with a default (0, "none", "Unknown", no_vulnerable:true)
@@ -190,7 +216,13 @@ function clean(x, s) {
   const asked = s?.lastSlot || null;
   const negated = NEGATION.test(said);
 
-  if (typeof x.area === "string") { const a = matchArea(x.area); if (a) out.area = a; }
+  if (typeof x.area === "string") {
+    const raw = x.area.trim();
+    const a = matchArea(raw);
+    if (a) out.area = a;
+    // Any other town or village the caller names is accepted as their location.
+    else if (raw && !/^(unknown|none|n\/?a|not (given|stated|provided))$/i.test(raw)) out.area = findPlace(raw) || raw.replace(/\s+/g, " ").slice(0, 40);
+  }
   if (typeof x.landmark === "string" && x.landmark.trim() && !/^(unknown|none|n\/?a)$/i.test(x.landmark.trim())) out.landmark = x.landmark.trim().slice(0, 80);
   const int = (v) => { const n = parseInt(v, 10); return Number.isFinite(n) && n > 0 && n < 500 ? n : undefined; };
   // Zero counts are dropped: "nobody vulnerable" is carried by no_vulnerable instead.
@@ -216,7 +248,7 @@ function extractPrompt(known, asked, utterance) {
         "You read what a caller said to a flood emergency helpline in Vijayawada, Andhra Pradesh. The caller may speak any Indian language or English, or a mix, and the text may contain speech-recognition mistakes.",
         "Return ONLY a JSON object (no code fence, no explanation) with the fields the caller actually stated. Omit anything not stated. Never guess.",
         "Fields:",
-        `"area": the locality, one of exactly: ${Object.keys(AREAS).join(" | ")} | Other. Match any script or misspelt form (e.g. "సింగ్ నగర్" = "Singh Nagar", "పాయకాపురం" = "Payakapuram").`,
+        `"area": where the caller is, in English letters. If it is one of these Vijayawada localities use exactly that name: ${Object.keys(AREAS).join(" | ")}. Otherwise give the town, city or village name as spoken (e.g. "గుంటూరు" = "Guntur", "విశాఖపట్నం" = "Visakhapatnam", "హైదరాబాద్" = "Hyderabad"). Match any script or misspelt form (e.g. "సింగ్ నగర్" = "Singh Nagar", "పాయకాపురం" = "Payakapuram").`,
         '"landmark": nearby landmark or street, in English letters.',
         '"people": total number of people with the caller, integer ("నేను ఒక్కడినే" / "I am alone" = 1, "ఐదుగురు" = 5).',
         '"water": one of exactly: none | ankle | knee | waist | chest | first_floor | roof (మోకాళ్ళు = knee, నడుము = waist, ఛాతీ = chest).',

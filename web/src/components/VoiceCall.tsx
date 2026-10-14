@@ -371,6 +371,9 @@ export function VoiceCall({
     rec.start();
     setState("listening");
 
+    // If the AudioContext is still suspended (some WebViews), the level meter reads silence:
+    // try to resume it, and fall back to a fixed 8 s turn so the caller is still heard.
+    if (ctx.state === "suspended") void ctx.resume().catch(() => {});
     const src = ctx.createMediaStreamSource(stream);
     const an = ctx.createAnalyser();
     an.fftSize = 1024;
@@ -390,6 +393,13 @@ export function VoiceCall({
       if (rms > 0.02) {
         meta.spoke = true;
         last = now;
+      }
+      if (ctx.state !== "running") {
+        if (now - t0 > 8000) {
+          meta.spoke = true;
+          stopListening(false);
+        }
+        return;
       }
       if ((meta.spoke && now - last > 1300) || now - t0 > 15000) stopListening(false);
     }, 80);
@@ -458,7 +468,8 @@ export function VoiceCall({
     try {
       const ctx = ctxRef.current ?? new AudioContext();
       ctxRef.current = ctx;
-      if (ctx.state === "suspended") await ctx.resume();
+      // Some WebViews never settle resume() outside a tap; never let it block the call.
+      if (ctx.state === "suspended") await Promise.race([ctx.resume().catch(() => {}), new Promise((r) => window.setTimeout(r, 700))]);
     } catch {
       setTypedMode(true);
     }
