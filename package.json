@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/hariswar272/sahaya-setu"
   },
-  "homepage": "https://sahaya.hmgenx.in",
+  "homepage": "https://setu.hmgenx.in",
   "engines": {
     "node": ">=22"
   },

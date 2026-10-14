@@ -5,9 +5,9 @@
 [![CI](https://github.com/hariswar272/sahaya-setu/actions/workflows/ci.yml/badge.svg)](https://github.com/hariswar272/sahaya-setu/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node 22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](server/package.json)
-[![Live](https://img.shields.io/badge/live-sahaya.hmgenx.in-blue)](https://sahaya.hmgenx.in)
+[![Live](https://img.shields.io/badge/live-sahaya.hmgenx.in-blue)](https://setu.hmgenx.in)
 
-**Live demo:** https://sahaya.hmgenx.in  ·  **Android app:** https://sahaya.hmgenx.in/download/Sahaya-AI.apk  ·  **Docs:** [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+**Live demo:** https://setu.hmgenx.in  ·  **Android app:** https://setu.hmgenx.in/download/Sahaya-AI.apk  ·  **Docs:** [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 > Call Sahaya. Get real help, fast. Tell Sahaya your problem in Telugu — it understands, takes action, and connects you to the right help in seconds: rescue teams, health workers, farm advice or fraud protection.
 
@@ -141,7 +141,7 @@ docker compose up --build        # builds the PWA and serves everything on http:
 
 ### Demo walkthrough (3 minutes)
 
-1. Open https://sahaya.hmgenx.in → **Talk to Sahaya** → say in Telugu "మేము సింగ్ నగర్ లో ఉన్నాము, నీళ్ళు మొదటి అంతస్తు వరకు వచ్చాయి, ఐదుగురు ఉన్నాము, అమ్మమ్మకి ఇన్సులిన్ కావాలి" → CRITICAL priority, boat dispatched, live pin on `/console/sos`.
+1. Open https://setu.hmgenx.in → **Talk to Sahaya** → say in Telugu "మేము సింగ్ నగర్ లో ఉన్నాము, నీళ్ళు మొదటి అంతస్తు వరకు వచ్చాయి, ఐదుగురు ఉన్నాము, అమ్మమ్మకి ఇన్సులిన్ కావాలి" → CRITICAL priority, boat dispatched, live pin on `/console/sos`.
 2. `/scam` → paste a "digital arrest" message → SCAM verdict with red flags and one-tap 1930 report.
 3. `/arogya` → ANC call in Telugu → danger sign → HIGH risk on the ASHA dashboard.
 4. `/rythu` → "where should I sell 20 quintals of tomato in Guntur?" → live prices and net-gain advice.
@@ -152,7 +152,7 @@ docker compose up --build        # builds the PWA and serves everything on http:
 ```bash
 npm test                                          # 69 offline unit tests (node:test), no API keys needed
 npm run lint && npm run typecheck                 # ESLint (server + web), TypeScript strict
-node scripts/smoke.mjs https://sahaya.hmgenx.in   # end-to-end: every module's API, a full voice-call flow, audio checks
+node scripts/smoke.mjs https://setu.hmgenx.in   # end-to-end: every module's API, a full voice-call flow, audio checks
 ```
 
 * **Unit tests** cover the conversation engine (`lib/flow.mjs`, with the AI, voice and session layers injected as stubs), SOS triage and place matching, Arogya danger-sign rules and answer parsing, Rythu weather risk, sell advice and Agmarknet parsing, Scam Shield rules and the rule/AI merge (an AI "safe" reply can never downgrade a rule-detected scam), the tolerant JSON parser and the rate limiter.
