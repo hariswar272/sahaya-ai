@@ -364,7 +364,7 @@ export default function Landing() {
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
               </span>
               <AudioLines aria-hidden="true" className="h-4 w-4 text-green-600" />
-              AI helpline · speaks Telugu
+              Sahaya Setu · AI helpline · speaks Telugu
             </motion.div>
 
             <h1 className="mt-6 text-[2.6rem] font-extrabold leading-[1.06] tracking-tight text-ink sm:text-6xl lg:mt-[clamp(.75rem,2.4vh,1.5rem)] lg:text-[clamp(2.6rem,7.4vh,4rem)]">

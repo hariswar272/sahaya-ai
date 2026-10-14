@@ -2,7 +2,7 @@
   "name": "sahaya-ai",
   "version": "1.0.0",
   "private": true,
-  "description": "Sahaya AI - a Telugu voice-AI helpline for disaster SOS, health check-ins, farmer advice and scam protection",
+  "description": "Sahaya AI (Sahaya Setu) - a Telugu voice-AI helpline for disaster SOS, health check-ins, farmer advice and scam protection",
   "license": "MIT",
   "author": "B Hariswar Naik",
   "repository": {

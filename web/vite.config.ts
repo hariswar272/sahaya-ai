@@ -14,7 +14,7 @@ export default defineConfig({
       includeAssets: ["favicon.svg", "icons/favicon-64.png", "icons/apple-touch-icon.png"],
       manifest: {
         id: "/",
-        name: "Sahaya AI",
+        name: "Sahaya AI · Sahaya Setu",
         short_name: "Sahaya",
         description: "Your AI helper for every emergency: a real AI calling agent that speaks 11 Indian languages, for disaster SOS, health follow-up calls, farmer advice and scam protection.",
         lang: "en",
