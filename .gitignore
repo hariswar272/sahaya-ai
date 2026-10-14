@@ -1,6 +1,17 @@
 .env
 **/node_modules/
 server/data/
+server/data-*/
 web/dist/
+web/dev-dist/
 android/**/build/
+android/app/.dart_tool/
+android/app/.idea/
+android/*.apk
+pitch/node_modules/
 *.log
+data/
+pitch/
+android/**/.gradle/
+android/app/android/local.properties
+scratchpad/

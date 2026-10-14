@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme only, including Android WebView and Chrome auto-dark. */
+    color-scheme: only light;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background: #f6f7fb;
+  }
+  body {
+    @apply bg-page text-ink antialiased;
+    font-family: Inter, "Noto Sans Telugu", "Noto Sans Devanagari", "Noto Sans Tamil", "Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Bengali",
+      "Noto Sans Gujarati", "Noto Sans Gurmukhi", "Noto Sans Oriya", system-ui, sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  .te,
+  :lang(te) {
+    font-family: "Noto Sans Telugu", Inter, "Noto Sans Devanagari", "Noto Sans Tamil", "Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Bengali",
+      "Noto Sans Gujarati", "Noto Sans Gurmukhi", "Noto Sans Oriya", system-ui, sans-serif;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  /* Loading placeholder: <div class="skeleton h-4 w-32" /> */
+  .skeleton {
+    @apply rounded-lg;
+    background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 37%, #eef2f7 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+  /* Card that lifts on hover. */
+  .hover-lift {
+    @apply transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lift;
+  }
+  .press {
+    @apply transition-transform active:scale-[.97];
+  }
+  /* Animated multi-colour gradient background. */
+  .bg-animated {
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+  }
+  /* Landing rhythm: wider container. */
+  .container-wide {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  /* Subtle dotted grid for alternating sections. */
+  .bg-dots {
+    background-image: radial-gradient(rgba(15, 23, 42, 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  /* Glass-look badge without backdrop-filter (cheap to animate). */
+  .glass-badge {
+    @apply border border-white bg-white/90 shadow-lift ring-1 ring-slate-900/5;
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+}
+
+.leaflet-container {
+  font: inherit;
+  z-index: 0;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

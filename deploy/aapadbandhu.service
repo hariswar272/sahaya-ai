@@ -1,0 +1,23 @@
+[Unit]
+Description=Aapadbandhu AI — Telugu public-help platform (web + API on 127.0.0.1:4200)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=aapadbandhu
+Group=aapadbandhu
+WorkingDirectory=/srv/projects/aapadbandhu/current
+EnvironmentFile=/srv/projects/aapadbandhu/shared/.env
+ExecStart=/usr/bin/node server/index.mjs
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+# Voxera and Just We keep priority on this box.
+CPUWeight=50
+MemoryMax=768M
+
+[Install]
+WantedBy=multi-user.target

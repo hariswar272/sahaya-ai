@@ -1,0 +1,118 @@
+/* Leaflet divIcon markers for the SOS control room (plain CSS so Tailwind purge can't drop them). */
+.sos-divicon {
+  background: transparent;
+  border: none;
+}
+.sos-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font: 700 11px/1 Inter, system-ui, sans-serif;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.35);
+  transition: transform 0.15s ease;
+}
+.sos-pin--critical {
+  background: #dc2626;
+  animation: sos-pulse 1.4s infinite;
+}
+.sos-pin--high {
+  background: #ea580c;
+}
+.sos-pin--medium {
+  background: #ca8a04;
+}
+.sos-pin--low {
+  background: #16a34a;
+}
+.sos-pin.is-resolved {
+  background: #94a3b8 !important;
+  animation: none;
+  opacity: 0.75;
+  width: 22px;
+  height: 22px;
+  font-size: 10px;
+}
+.sos-pin.is-selected {
+  transform: scale(1.25);
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+}
+@keyframes sos-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(220, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+.sos-team {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #fff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 9999px;
+  padding: 1px 7px 1px 4px;
+  font: 600 11px/1.5 Inter, system-ui, sans-serif;
+  color: #0f172a;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.2);
+}
+.sos-team.is-busy {
+  border-color: #ea580c;
+  background: #fff7ed;
+}
+.sos-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #dc2626;
+  animation: sos-blink 1.2s infinite;
+}
+@keyframes sos-blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes sos-flash {
+  0% {
+    background: #fef2f2;
+    box-shadow: 0 0 0 2px #fecaca;
+  }
+  100% {
+    background: #fff;
+    box-shadow: none;
+  }
+}
+.sos-flash {
+  animation: sos-flash 2.4s ease;
+}
+/* White pulse ring for the 112 button on the rose hero (the shared ring is rose, invisible there). */
+@keyframes sos-ring-white {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+.sos-ring-white {
+  animation: sos-ring-white 1.8s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sos-ring-white,
+  .sos-pin--critical,
+  .sos-live-dot {
+    animation: none;
+  }
+}
