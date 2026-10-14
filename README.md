@@ -40,7 +40,7 @@ Millions of people in Andhra Pradesh and Telangana are most comfortable speaking
 
 The website UI is in English; **the AI speaks Telugu today**, with Hindi, Tamil, Kannada, Malayalam, Marathi, Bengali, Gujarati, Punjabi, Odia and English voices on the roadmap (the engine already supports them).
 
-## How it works
+## How the solution works
 
 ```mermaid
 flowchart LR
@@ -190,18 +190,20 @@ See [SECURITY.md](SECURITY.md). In short:
   * a PWA service worker for repeat visits
 * **Live updates** use a single Server-Sent Events stream, with no polling.
 
-## Chosen vertical, approach and assumptions
+## Chosen vertical
 
 **Vertical:** *AI for Better Living & Smarter Communities* — persona: a Telugu-speaking citizen in Andhra Pradesh/Telangana (a flood victim, an expectant mother, a farmer, an elderly scam target) and the local officials who serve them (control room, ASHA worker, agriculture officer, cyber cell).
 
-**Approach and logic:**
+## Approach and logic
+
 1. Speech in → **Sarvam saarika** transcribes Telugu (or any Indian language).
 2. The LLM is used *only* to extract structured facts from free speech (`extractPrompt` → JSON), validated by a `clean` step.
 3. **Rules decide**: priority, risk, verdict and advice are computed in code with a human-readable reason (`triage()`, danger-sign rules, scam rules, net-gain maths).
 4. Actions follow from the decision: dispatch, ASHA flag, sell advice, 1930 report — and dashboards update live over SSE.
 5. **Sarvam bulbul** speaks the reply in Telugu; fixed lines are pre-rendered so replies are instant.
 
-**Assumptions made:**
+## Assumptions made
+
 * Callers may speak informally and mix Telugu with English; the model may mis-hear, so every slot can be re-asked once and nothing critical is auto-decided from a single uncertain field.
 * Rescue team positions, PHC lists and landmark coordinates are representative seed data for Vijayawada/Guntur; in a deployment they come from the district's own registers.
 * Weather (Open-Meteo) and mandi prices (data.gov.in Agmarknet) are best-effort public APIs; responses are cached and the agent says so when live data is unavailable instead of guessing.
