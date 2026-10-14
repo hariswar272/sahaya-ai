@@ -2,7 +2,7 @@
 
 **Sahaya Setu** (సహాయ సేతు, *the bridge of help*) connects citizens who speak Telugu with the officials who can help them — rescue teams, ASHA workers, agriculture officers and the cyber cell — through one AI voice agent.
 
-[![CI](https://github.com/hariswar272/sahaya-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/hariswar272/sahaya-ai/actions/workflows/ci.yml)
+[![CI](https://github.com/hariswar272/sahaya-setu/actions/workflows/ci.yml/badge.svg)](https://github.com/hariswar272/sahaya-setu/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node 22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](server/package.json)
 [![Live](https://img.shields.io/badge/live-sahaya.hmgenx.in-blue)](https://sahaya.hmgenx.in)
