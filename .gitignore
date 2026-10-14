@@ -15,3 +15,5 @@ pitch/
 android/**/.gradle/
 android/app/android/local.properties
 scratchpad/
+reference/
+CONTRACT.md

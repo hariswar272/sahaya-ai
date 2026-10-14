@@ -611,7 +611,9 @@ export function VoiceCall({
           </div>
           <div className="min-w-0 flex-1">
             <div className={cn("text-xs font-bold uppercase tracking-wider", a.text)}>{title}</div>
-            <div className="te text-lg font-bold leading-snug text-ink">{statusMain}</div>
+            <div className="te text-lg font-bold leading-snug text-ink" role="status" aria-live="polite">
+              {statusMain}
+            </div>
             {statusSub && statusSub !== statusMain && <div className="text-sm text-slate-500">{statusSub}</div>}
           </div>
           <div className="flex w-full shrink-0 gap-2 sm:w-auto">
@@ -648,7 +650,13 @@ export function VoiceCall({
         </div>
 
         {/* Conversation */}
-        <div ref={logRef} className="scrollbar-thin flex max-h-[52vh] min-h-[260px] flex-1 flex-col gap-3 overflow-y-auto bg-slate-50/70 p-4">
+        <div
+          ref={logRef}
+          role="log"
+          aria-live="polite"
+          aria-label="Call conversation"
+          className="scrollbar-thin flex max-h-[52vh] min-h-[260px] flex-1 flex-col gap-3 overflow-y-auto bg-slate-50/70 p-4"
+        >
           {msgs.length === 0 && state !== "connecting" ? (
             <div className="m-auto max-w-sm text-center text-sm leading-relaxed text-slate-500">
               {emptyHint ?? (

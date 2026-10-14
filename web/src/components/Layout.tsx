@@ -162,6 +162,12 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Preloader />
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-ink focus:shadow-lift"
+      >
+        Skip to main content
+      </a>
       <AppNudge />
 
       {/* Floating glass navbar */}
@@ -295,7 +301,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </AnimatePresence>
       </header>
 
-      <main className="flex-1 pb-24 pt-20 lg:pb-12">
+      <main id="main" tabIndex={-1} className="flex-1 pb-24 pt-20 outline-none lg:pb-12">
         <motion.div key={pathname} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.32, ease: [0.2, 0.7, 0.2, 1] }}>
           {children}
         </motion.div>
