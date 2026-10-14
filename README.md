@@ -90,6 +90,56 @@ node server/index.mjs        # http://127.0.0.1:4200
 node scripts/smoke.mjs http://127.0.0.1:4200
 ```
 
+## Problem statement alignment: *AI for Better Living & Smarter Communities*
+
+| Challenge area | How Sahaya addresses it |
+|---|---|
+| Public Safety & Emergency Response | Disaster SOS: voice triage, rule-based priority, auto-dispatch of critical cases, live control-room map, AI situation report, resource forecast |
+| Healthcare & Community Wellness | Arogya Call: programme-specific AI check-ins (pregnancy, BP/diabetes, TB) with explainable danger-sign rules and PHC/108 guidance |
+| Agriculture & Local Development | Rythu Call: live Open-Meteo weather, live Agmarknet mandi prices, net-gain sell advice, automatic heavy-rain alerts |
+| Citizen Engagement & Public Services | Scam Shield: fraud checks with one-tap 1930 / cybercrime.gov.in reporting and family alerts |
+| Accessibility & Inclusive Communities | Voice-first in Telugu, works on basic phones, no login, no reading or typing required |
+
+## Testing
+
+```bash
+cd server && npm test                          # 21 unit tests: SOS triage rules, place matching, scam rule engine, language codes
+node scripts/smoke.mjs https://sahaya.hmgenx.in   # end-to-end: every module's API, a full voice-call flow, audio checks
+```
+
+* GitHub Actions CI (`.github/workflows/ci.yml`) runs the server tests and the web typecheck + production build on every push.
+* Real-voice QA: Telugu caller audio was played into the live site through a simulated microphone and on a real Android phone, checking transcripts, AI answers, spoken replies and the final result for every module.
+
+## Security
+
+See [SECURITY.md](SECURITY.md). In short:
+* HTTPS with HSTS and security headers on every response.
+* Per-IP rate limits and input validation.
+* No secrets in the repo (`.env.example` lists the variables).
+* Minimal data retention: scam messages are never stored, and health records expire after 48 h.
+
+## Accessibility
+
+* **Voice-first in Telugu:** people who can't read or type English can still get help.
+* **Typing fallback:** if the microphone is unavailable or denied, a text box is always available.
+* **Keyboard and screen readers:**
+  * full keyboard navigation with visible focus rings
+  * semantic headings, labelled icon buttons and alt text on every image
+* **Reduced motion:** `prefers-reduced-motion` turns off all animation.
+* **Display:** high-contrast always-light theme, and mobile-first layouts tested at 390 px with no horizontal scroll.
+* **Emergency numbers** (112, 108, 1930, 181) are one tap away on every page.
+
+## Efficiency
+
+* **Instant replies:** every fixed agent line is pre-rendered once and cached on disk, so replies play immediately and restarts make no repeat TTS calls.
+* **Weather and prices:** responses are cached (30 min / 1 h), with last-good fallbacks.
+* **Shared AI quota:** a Sarvam concurrency gate (max 3 in flight) with exponential back-off keeps one client from exhausting it.
+* **Frontend:**
+  * lazy-loaded modules, so the main JS chunk is about 340 kB
+  * transform/opacity-only animations
+  * a PWA service worker for repeat visits
+* **Live updates** use a single Server-Sent Events stream, with no polling.
+
 ## Responsible AI
 
 * Priority and risk come from explainable rules, never from a black box.

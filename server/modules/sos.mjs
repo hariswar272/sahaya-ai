@@ -453,4 +453,4 @@ export default {
 };
 
 // Exposed for tests and other modules.
-export { triage, summarize, forecast, AREAS, WATER_RANK };
+export { triage, summarize, forecast, AREAS, WATER_RANK, findPlace, matchArea, km };

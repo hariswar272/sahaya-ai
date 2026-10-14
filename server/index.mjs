@@ -23,6 +23,16 @@ const MODULES_DIR = path.join(SERVER_DIR, "modules");
 
 const app = Fastify({ bodyLimit: 8 * 1024 * 1024, trustProxy: true, logger: false });
 
+// Baseline security headers on every response (TLS itself is terminated by nginx).
+app.addHook("onSend", async (_req, reply, payload) => {
+  reply.header("X-Content-Type-Options", "nosniff");
+  reply.header("X-Frame-Options", "SAMEORIGIN");
+  reply.header("Referrer-Policy", "strict-origin-when-cross-origin");
+  reply.header("Permissions-Policy", "microphone=(self), camera=(), geolocation=(), payment=()");
+  reply.header("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  return payload;
+});
+
 /* ------------------------------------------------------------------ ctx */
 
 const flows = [];
