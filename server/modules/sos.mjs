@@ -265,6 +265,8 @@ function extractPrompt(known, asked, utterance) {
         '"నడుము వరకు నీళ్ళు ఉన్నాయి" -> {"water":"waist"}',
         '"పాయకాపురంలో ఉన్నాం, ఆరుగురం" -> {"area":"Payakapuram","people":6}',
         '"నాన్నకి బీపీ, మందులు అయిపోయాయి" -> {"elderly":1,"medical":["bp tablets"]}',
+        '"అమ్మమ్మకి ఇన్సులిన్ కావాలి" -> {"elderly":1,"medical":["insulin"]}  (అమ్మమ్మ / నానమ్మ / తాతయ్య / ముసలి = an elderly person)',
+        '"బోర్ పంపండి" or "బోట్ పంపండి" (boat, often misheard) -> {"needs":["rescue"]}',
         '"ఎవరూ లేరు" (question was about vulnerable people) -> {"no_vulnerable":true}',
         '"ఆహారం, మంచినీళ్ళు కావాలి" -> {"needs":["food","water"]}',
         `Already known: ${JSON.stringify(known)}`,

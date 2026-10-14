@@ -425,10 +425,11 @@ const L = {
 
 const days = (n) => (n === 1 ? "ఒక రోజు" : `${n} రోజులు`);
 
-function weatherLine(w) {
-  const n = w.next3;
-  let te = `${w.placeTe}లో రాబోయే మూడు రోజుల్లో `;
-  let en = `In ${w.place}, over the next three days `;
+function weatherLine(w, weekly = false) {
+  // "This week" questions get the 7-day summary; everything else the next 3 days.
+  const n = weekly ? { ...w.next3, ...w.week } : w.next3;
+  let te = weekly ? `${w.placeTe}లో ఈ వారం ` : `${w.placeTe}లో రాబోయే మూడు రోజుల్లో `;
+  let en = weekly ? `In ${w.place}, this week ` : `In ${w.place}, over the next three days `;
   if (n.rainDays > 0) {
     te += `${days(n.rainDays)} వర్షం పడే అవకాశం ఉంది, మొత్తం సుమారు ${Math.round(n.totalRain)} మిల్లీమీటర్లు. `;
     en += `rain is likely on ${n.rainDays} day${n.rainDays > 1 ? "s" : ""}, about ${Math.round(n.totalRain)} mm in total. `;
@@ -678,7 +679,8 @@ export default {
         try {
           const [w] = await fetchWeather([place]);
           if (!w) throw new Error("no data");
-          return { line: weatherLine(w), result: { intent: "weather", place, weather: w } };
+          const weekly = /వారం|week|vaaram|varam/i.test(String(said || ""));
+          return { line: weatherLine(w, weekly), result: { intent: "weather", place, weather: w } };
         } catch {
           return { line: L.noWeather, result: { intent: "weather", place } };
         }
