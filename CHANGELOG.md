@@ -16,7 +16,7 @@ All notable changes to Sahaya AI. The format follows [Keep a Changelog](https://
 ### Security
 - HTTPS with HSTS, Content-Security-Policy (hashed inline bootstrap), nosniff/frame/referrer/permissions headers.
 - Per-IP rate limiting, body-size caps, enum whitelists and defensive parsing of model output.
-- `@fastify/static` upgraded to 10.x (path-traversal advisories); `npm audit` gate and Dependabot in CI.
+- `@fastify/static` upgraded to 10.x (path-traversal advisories); `npm audit` gate in CI.
 
 ### Quality
 - 69 offline unit tests (`node:test`) with coverage script; end-to-end smoke test; GitHub Actions CI (lint, typecheck, tests, audit, build).
