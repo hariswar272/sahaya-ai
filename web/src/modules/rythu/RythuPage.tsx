@@ -1,3 +1,4 @@
+// Public Rythu Call page: farmer voice call for weather and where-to-sell advice.
 import { useEffect, useState, type ComponentType } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bug, CloudSun, LayoutDashboard, MapPin, Sprout, TrendingUp } from "lucide-react";

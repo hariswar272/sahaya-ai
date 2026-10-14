@@ -9,7 +9,7 @@ export const ROOT_DIR = path.resolve(SERVER_DIR, "..");
 
 function loadEnv(file) {
   if (!existsSync(file)) return;
-  for (const line of readFileSync(file, "utf8").replace(/^﻿/, "").split(/\r?\n/)) {
+  for (const line of readFileSync(file, "utf8").replace(/^\uFEFF/, "").split(/\r?\n/)) {
     const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/);
     if (m && !(m[1] in process.env)) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
   }

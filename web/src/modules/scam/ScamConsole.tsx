@@ -1,3 +1,4 @@
+// Cyber-cell awareness console: anonymous scam-type statistics and trends.
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";

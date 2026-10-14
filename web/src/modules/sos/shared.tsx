@@ -1,3 +1,4 @@
+// Types, priority styling and live-event hooks shared by the SOS page and console.
 import { useEffect, useRef, type ReactNode } from "react";
 import { subscribe } from "@/lib/sse";
 

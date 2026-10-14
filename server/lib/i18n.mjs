@@ -73,6 +73,7 @@ function persist(lang) {
   if (!timers.has(lang)) timers.set(lang, setTimeout(() => writeNow(lang), 200));
 }
 
+/** Writes every pending translation cache to disk immediately (used on shutdown). */
 export function flushI18n() {
   for (const lang of [...timers.keys()]) writeNow(lang);
 }

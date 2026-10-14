@@ -8,6 +8,12 @@ const stores = new Map();
 
 const isEmpty = (d) => d == null || (Array.isArray(d) ? d.length === 0 : typeof d === "object" && Object.keys(d).length === 0);
 
+/**
+ * Opens (or returns the already-open) JSON store `<DATA_DIR>/<name>.json`.
+ * @param {string} name  letters, digits, "_" or "-" only
+ * @param {() => object} [seedFn]  initial contents when the file is missing or empty
+ * @returns {{data: object, save: () => void}} `data` is live; call `save()` after changing it
+ */
 export function createStore(name, seedFn) {
   if (!/^[a-z0-9_-]+$/i.test(String(name))) throw new Error(`store: bad name "${name}"`);
   if (stores.has(name)) return stores.get(name);
@@ -61,6 +67,7 @@ export function createStore(name, seedFn) {
   return store;
 }
 
+/** Writes every pending store to disk immediately (used on shutdown). */
 export function flushAll() {
   for (const s of stores.values()) s.flush();
 }

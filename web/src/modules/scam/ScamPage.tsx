@@ -1,3 +1,4 @@
+// Public Scam Shield page: check a message, screenshot or call and act on the verdict.
 import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {

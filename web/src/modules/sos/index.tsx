@@ -1,3 +1,4 @@
+// Disaster SOS module registration (routes, nav, accent).
 import { lazy, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import type { ModuleDef } from "../types";

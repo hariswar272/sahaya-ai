@@ -1,3 +1,4 @@
+// Types, labels and helpers shared by the Arogya page and console.
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { Baby, CheckCircle2, HeartPulse, Pill, ShieldAlert } from "lucide-react";
 import { api, type VoiceReply } from "@/lib/api";

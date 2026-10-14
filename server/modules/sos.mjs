@@ -443,7 +443,7 @@ export default {
       return { incident: inc };
     });
 
-    app.post("/reset", async (req, reply) => {
+    app.post("/reset", async () => {
       if (store.reset) store.reset();
       else { store.data = seedData(); store.save(); }
       ctx.sse.broadcast("sos:reset", {});

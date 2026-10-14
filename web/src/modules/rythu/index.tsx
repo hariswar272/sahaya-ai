@@ -1,3 +1,4 @@
+// Rythu Call module registration (routes, nav, accent).
 import type { ModuleDef } from "../types";
 import RythuPage from "./RythuPage";
 import RythuConsole from "./RythuConsole";

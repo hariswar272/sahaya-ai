@@ -1,3 +1,4 @@
+// Android app promotion section with real app screenshots in phone frames.
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { BadgeCheck, Download, Mic, MonitorSmartphone, PhoneCall, ShieldCheck, Smartphone, Zap } from "lucide-react";

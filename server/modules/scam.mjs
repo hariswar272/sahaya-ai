@@ -364,6 +364,7 @@ export default {
     const speak = async (text, lang = "te") => {
       if (!text) return null;
       // Untranslated (plain ASCII) text is read by the English voice.
+      // eslint-disable-next-line no-control-regex -- "any non-ASCII character" check
       const code = lang !== "en" && /[^\x00-\x7F]/.test(text) ? LANGS[lang][1] : "en-IN";
       for (let i = 0; i < 3; i++) {
         const a = await ctx.voice.tts(text, code).catch(() => null);

@@ -1,3 +1,4 @@
+// App shell: floating navbar, skip link, mobile tab bar, footer and the routed <main> outlet.
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";

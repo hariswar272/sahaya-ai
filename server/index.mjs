@@ -1,6 +1,7 @@
 // Sahaya AI server: shared voice-AI core, auto-loaded modules, SSE, and the built web app.
 import "./lib/env.mjs";
-import { existsSync, readdirSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import Fastify from "fastify";
@@ -23,8 +24,39 @@ const MODULES_DIR = path.join(SERVER_DIR, "modules");
 
 const app = Fastify({ bodyLimit: 8 * 1024 * 1024, trustProxy: true, logger: false });
 
+/* ------------------------------------------------------------- security */
+
+// Scripts may only come from this origin plus the exact inline bootstrap snippet(s) in the
+// built index.html, which are hashed once at startup. An injected <script> therefore cannot run.
+function inlineScriptHashes() {
+  try {
+    const html = readFileSync(path.join(WEB_DIST, "index.html"), "utf8");
+    return [...html.matchAll(/<script(?![^>]*\ssrc=)[^>]*>([\s\S]*?)<\/script>/g)].map(
+      (m) => `'sha256-${createHash("sha256").update(m[1]).digest("base64")}'`,
+    );
+  } catch {
+    return [];
+  }
+}
+
+const CSP = [
+  "default-src 'self'",
+  `script-src 'self' ${inlineScriptHashes().join(" ")}`.trim(),
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "img-src 'self' data: blob: https:", // map tiles
+  "media-src 'self' blob: data:", // spoken replies
+  "connect-src 'self' https:",
+  "worker-src 'self' blob:",
+  "frame-ancestors 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join("; ");
+
 // Baseline security headers on every response (TLS itself is terminated by nginx).
 app.addHook("onSend", async (_req, reply, payload) => {
+  reply.header("Content-Security-Policy", CSP);
   reply.header("X-Content-Type-Options", "nosniff");
   reply.header("X-Frame-Options", "SAMEORIGIN");
   reply.header("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -175,8 +207,9 @@ await app.register(fastifyStatic, {
   root: WEB_DIST,
   prefix: "/",
   cacheControl: false,
-  setHeaders(res, file) {
-    res.setHeader("Cache-Control", /[\\/]assets[\\/]/.test(file) ? "public, max-age=31536000, immutable" : "no-cache");
+  // @fastify/static ≥ 9 passes the Fastify reply here (older versions passed the raw response).
+  setHeaders(reply, file) {
+    reply.header("Cache-Control", /[\\/]assets[\\/]/.test(file) ? "public, max-age=31536000, immutable" : "no-cache");
   },
 });
 

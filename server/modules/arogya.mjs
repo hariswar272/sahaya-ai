@@ -296,6 +296,7 @@ function fallback(program, q, said) {
   return out;
 }
 
+// eslint-disable-next-line no-control-regex -- strips control characters on purpose
 const cleanText = (v, max) => (typeof v === "string" ? v.replace(/[\u0000-\u001f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, max) : "");
 
 /* ----------------------------------------------------------------- module */

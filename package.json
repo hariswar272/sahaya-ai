@@ -1,0 +1,26 @@
+{
+  "name": "sahaya-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sahaya AI - a Telugu voice-AI helpline for disaster SOS, health check-ins, farmer advice and scam protection",
+  "license": "MIT",
+  "author": "B Hariswar Naik",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hariswar272/sahaya-ai"
+  },
+  "homepage": "https://sahaya.hmgenx.in",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix web install",
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "start": "npm --prefix server start",
+    "test": "npm --prefix server test",
+    "lint": "npm --prefix server run lint && npm --prefix web run lint",
+    "typecheck": "npm --prefix web run typecheck",
+    "smoke": "node scripts/smoke.mjs http://127.0.0.1:4200"
+  }
+}

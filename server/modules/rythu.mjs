@@ -155,7 +155,6 @@ const DCOORD = {
 let P = null; // the module store (set in register): data.prices = last good fetch, data.priceHistory = daily modal prices
 let refreshing = null;
 let retryAfter = 0;
-let lastError = "";
 
 const avg = (a) => a.reduce((x, y) => x + y, 0) / a.length;
 const num = (v) => { const n = Number(v); return Number.isFinite(n) && n > 0 ? n : null; };
@@ -234,7 +233,6 @@ function refreshPrices() {
       }
     } catch (e) {
       failed = true;
-      lastError = e.message;
       retryAfter = Date.now() + (e.status === 429 ? 10 : 3) * MIN;
       console.warn(`[rythu] Agmarknet: ${e.message} (${raw.length} rows before the error)`);
     }
@@ -252,7 +250,6 @@ function refreshPrices() {
       P.data.prices = { fetchedAt: Date.now(), records: recs };
       remember(recs);
       P.save();
-      if (!failed) lastError = "";
     }
   })().finally(() => { refreshing = null; });
   return refreshing;

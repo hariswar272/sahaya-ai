@@ -1,6 +1,11 @@
 # Sahaya AI — the AI helpline that speaks Telugu
 
-**Live demo:** https://sahaya.hmgenx.in  ·  **Android app:** https://sahaya.hmgenx.in/download/Sahaya-AI.apk
+[![CI](https://github.com/hariswar272/sahaya-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/hariswar272/sahaya-ai/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Node 22](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](server/package.json)
+[![Live](https://img.shields.io/badge/live-sahaya.hmgenx.in-blue)](https://sahaya.hmgenx.in)
+
+**Live demo:** https://sahaya.hmgenx.in  ·  **Android app:** https://sahaya.hmgenx.in/download/Sahaya-AI.apk  ·  **Docs:** [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 > Call Sahaya. Get real help, fast. Tell Sahaya your problem in Telugu — it understands, takes action, and connects you to the right help in seconds: rescue teams, health workers, farm advice or fraud protection.
 
@@ -63,11 +68,20 @@ flowchart LR
 ```
 server/            Fastify API — index.mjs, lib/ (ai, voice, flow engine, i18n, store, sse, sessions)
   modules/         sos.mjs · arogya.mjs · rythu.mjs · scam.mjs · phone.mjs (auto-loaded)
+  test/            69 offline unit tests (node:test)
 web/               React + Vite PWA — src/components (VoiceCall, Layout, Preloader…), src/modules/<id>
 android/           Flutter app wrapper (android/app)
 deploy/            deploy.ps1, nginx + systemd templates
 scripts/smoke.mjs  End-to-end smoke test of all modules
+docs/              ARCHITECTURE.md and screenshots
 ```
+
+Design principles (details in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)):
+
+* **Plugin modules.** Each lifeline is one server file that default-exports `{ id, register(app, ctx) }` and is auto-mounted under `/api/<id>`; it reaches the platform only through `ctx`, so modules never import each other.
+* **Declarative conversations.** Voice calls are data (lines, slots, prompts, rules) run by one shared, unit-tested engine.
+* **The model extracts, rules decide.** Priority and risk are computed in code with a human-readable reason.
+* **Tooling.** ESLint + Prettier + EditorConfig, TypeScript strict mode, `npm test` / `npm run lint` / `npm run typecheck` at the root, and CI on every push.
 
 ## Run locally
 
@@ -100,10 +114,36 @@ node scripts/smoke.mjs http://127.0.0.1:4200
 | Citizen Engagement & Public Services | Scam Shield: fraud checks with one-tap 1930 / cybercrime.gov.in reporting and family alerts |
 | Accessibility & Inclusive Communities | Voice-first in Telugu, works on basic phones, no login, no reading or typing required |
 
+### Why this is "better living" for a real community
+
+* **One number, every emergency.** A flood victim, an expectant mother, a farmer and a scam target all get help through the *same* Telugu voice agent — no app to learn, no form to fill. The same engine can run on a basic phone through a real call.
+* **Seconds, not hours.** A critical SOS is triaged and a rescue team is assigned in one call (< 10 s end-to-end in the smoke test), and the control room sees it on the map before the caller hangs up.
+* **Prevention, not just response.** Danger-sign calls catch pre-eclampsia, chest pain and TB relapse before they become emergencies; sell advice uses live mandi prices so a farmer is not cheated by a middleman; a scam is explained in plain Telugu before the OTP is shared.
+* **Built for officials too.** Every lifeline has a console: a live map and resource forecast for the district control room, a risk-ranked list for ASHA workers, alert broadcasts for agriculture officers, and anonymous scam trends for the cyber cell.
+* **Smarter community, not surveillance.** No accounts, no tracking, scam messages never stored, health records auto-expire, and every AI decision is explained in a human-readable reason.
+
+### Impact metrics the pilot would track
+
+| Metric | How Sahaya measures it |
+|---|---|
+| Time from SOS call to team assignment | logged per incident (`createdAt` → `assignedAt`) |
+| High-risk patients reached before a visit | Arogya risk flags vs ASHA follow-ups |
+| Extra income per farmer from sell advice | net gain shown in every recommendation |
+| Scams stopped | verdict counts and 1930 reports from Scam Shield |
+
+### Demo walkthrough (3 minutes)
+
+1. Open https://sahaya.hmgenx.in → **Talk to Sahaya** → say in Telugu "మేము సింగ్ నగర్ లో ఉన్నాము, నీళ్ళు మొదటి అంతస్తు వరకు వచ్చాయి, ఐదుగురు ఉన్నాము, అమ్మమ్మకి ఇన్సులిన్ కావాలి" → CRITICAL priority, boat dispatched, live pin on `/console/sos`.
+2. `/scam` → paste a "digital arrest" message → SCAM verdict with red flags and one-tap 1930 report.
+3. `/arogya` → ANC call in Telugu → danger sign → HIGH risk on the ASHA dashboard.
+4. `/rythu` → "where should I sell 20 quintals of tomato in Guntur?" → live prices and net-gain advice.
+5. Install the Android app and make the same call from a phone.
+
 ## Testing
 
 ```bash
-cd server && npm test                          # 69 offline unit tests (node:test), no API keys needed
+npm test                                          # 69 offline unit tests (node:test), no API keys needed
+npm run lint && npm run typecheck                 # ESLint (server + web), TypeScript strict
 node scripts/smoke.mjs https://sahaya.hmgenx.in   # end-to-end: every module's API, a full voice-call flow, audio checks
 ```
 
@@ -114,7 +154,8 @@ node scripts/smoke.mjs https://sahaya.hmgenx.in   # end-to-end: every module's A
 ## Security
 
 See [SECURITY.md](SECURITY.md). In short:
-* HTTPS with HSTS and security headers on every response.
+* HTTPS with HSTS, a **Content-Security-Policy** (scripts only from this origin, inline bootstrap hashed at startup) and the standard hardening headers on every response.
+* `npm audit` gate in CI (no known high/critical vulnerabilities in production dependencies).
 * Per-IP rate limits and input validation.
 * No secrets in the repo (`.env.example` lists the variables).
 * Minimal data retention: scam messages are never stored, and health records expire after 48 h.

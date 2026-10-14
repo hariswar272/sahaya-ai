@@ -1,3 +1,4 @@
+// Public Disaster SOS page: voice or text emergency report with live status.
 import { useState, type ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BatteryCharging, Droplets, Home, Loader2, MapPin, Phone, Send, ShieldCheck, Siren, Zap } from "lucide-react";

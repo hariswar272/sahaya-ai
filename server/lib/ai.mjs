@@ -137,6 +137,12 @@ async function sarvamChat(messages, { temperature, max_tokens, json }) {
 
 const defaults = { temperature: 0, max_tokens: 400, json: false };
 
+/**
+ * Chat completion: Gemini first (when configured and not backing off), Sarvam otherwise.
+ * @param {{role: string, content: string}[]} messages
+ * @param {{temperature?: number, max_tokens?: number, json?: boolean}} [opts]
+ * @returns {Promise<{text: string, engine: "gemini"|"sarvam"}>}
+ */
 export async function llm(messages, opts = {}) {
   const o = { ...defaults, ...opts };
   if (hasGemini() && Date.now() >= backoffUntil) {
@@ -153,6 +159,10 @@ export async function llm(messages, opts = {}) {
   return { text, engine: "sarvam" };
 }
 
+/**
+ * Like `llm` but parses the reply as JSON; if Gemini returns something unparsable, Sarvam is tried once.
+ * @returns {Promise<{data: object|array|null, engine: "gemini"|"sarvam"}>} `data` is null when nothing parsed.
+ */
 export async function llmJSON(messages, opts = {}) {
   const r = await llm(messages, { ...opts, json: true });
   const data = parseJSON(r.text);

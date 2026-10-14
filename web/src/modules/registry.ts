@@ -1,3 +1,4 @@
+// Registry of all modules; the router, navbar and home page are generated from this list.
 import type { ModuleDef } from "./types";
 
 // Every web/src/modules/<id>/index.tsx registers itself, loaded lazily on first visit

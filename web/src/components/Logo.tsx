@@ -1,3 +1,4 @@
+// Sahaya AI wordmark and logo mark.
 import { HeartHandshake } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/lib/i18n";

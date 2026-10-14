@@ -1,3 +1,4 @@
+// Full-screen preloader shown once per session while the app boots.
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HeartHandshake } from "lucide-react";

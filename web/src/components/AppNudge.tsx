@@ -1,3 +1,4 @@
+// Floating "get the Android app" nudge shown after the visitor scrolls past the hero.
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";

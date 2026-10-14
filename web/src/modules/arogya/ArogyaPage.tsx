@@ -1,3 +1,4 @@
+// Public Arogya Call page: programme picker and the AI health check-in call.
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BellRing, ClipboardCheck, HeartPulse, Lock, Mic, Phone, PhoneCall, ShieldAlert, Stethoscope } from "lucide-react";

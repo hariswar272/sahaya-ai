@@ -1,3 +1,4 @@
+// Shared UI primitives (Button, Input, Card, Badge…) used across every page.
 import {
   forwardRef,
   useEffect,

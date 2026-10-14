@@ -1,3 +1,4 @@
+// Animated demo of a Sahaya voice call used on the landing page hero.
 import { useEffect, useRef, useState } from "react";
 import { BellRing, Mic, Phone, PhoneOff, Volume2 } from "lucide-react";
 import { cn, prefersReducedMotion } from "@/lib/utils";

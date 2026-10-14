@@ -1,3 +1,4 @@
+// Agriculture officer console: district weather risk, mandi trends and alert broadcasts.
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bug, CloudRain, Megaphone, PhoneCall, Play, RotateCcw, Send, Sprout, Sun, Users } from "lucide-react";

@@ -21,7 +21,9 @@ jobs:
         with:
           node-version: 22
       - run: npm install --no-audit --no-fund
+      - run: npm run lint
       - run: npm test
+      - run: npm audit --omit=dev --audit-level=high
 
   web:
     name: Web typecheck and build

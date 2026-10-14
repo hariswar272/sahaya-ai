@@ -1,3 +1,4 @@
+// Phone console: place real outbound calls through Samvaad / Plivo and watch call status.
 import { useCallback, useEffect, useState } from "react";
 import { AlertTriangle, CheckCircle2, PhoneCall, PhoneOff, Radio, ShieldCheck } from "lucide-react";
 import type { ModuleDef } from "../types";

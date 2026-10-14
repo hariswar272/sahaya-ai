@@ -1,3 +1,4 @@
+// Presentational pieces for Rythu Call: weather strip, price chart, advice card.
 import { useEffect, useMemo, useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, CloudRain, CloudSun, Sun, Thermometer, TrendingUp, Truck, Wind } from "lucide-react";

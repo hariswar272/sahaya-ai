@@ -1,3 +1,4 @@
+// Inline Android robot SVG icon used in app-download CTAs.
 import { cn } from "@/lib/utils";
 
 /** Android robot head (Material Icons "android", Apache-2.0). */

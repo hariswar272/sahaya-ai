@@ -18,6 +18,7 @@ export function create(obj = {}) {
   return id;
 }
 
+/** Returns the live session object for `id` (touching its expiry), or null when unknown/expired. */
 export function get(id) {
   const s = id ? map.get(String(id)) : null;
   if (!s) return null;

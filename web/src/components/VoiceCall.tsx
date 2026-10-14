@@ -1,3 +1,4 @@
+// Voice-call widget: records the mic, streams turns to a module flow, plays spoken replies and offers a typed fallback.
 import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Bot, Loader2, Mic, Phone, PhoneOff, Send, Sparkles, Volume2 } from "lucide-react";
 import { api, type VoiceLine, type VoiceReply } from "@/lib/api";
@@ -680,7 +681,7 @@ export function VoiceCall({
                       <Bot aria-hidden="true" className="h-4 w-4" />
                     </div>
                     <div className="rounded-2xl rounded-tl-md border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm">
-                      <div className="te text-[15px] leading-relaxed text-ink">{main}</div>
+                      <div lang={VOICE_LANG} className="te text-[15px] leading-relaxed text-ink">{main}</div>
                       {subtitles && en && en !== main && <div className="mt-1 text-xs leading-relaxed text-slate-500">{en}</div>}
                     </div>
                   </div>
@@ -688,7 +689,7 @@ export function VoiceCall({
               }
               return (
                 <div key={m.id} className={cn("max-w-[85%] animate-fade-up self-end rounded-2xl rounded-tr-md border px-3.5 py-2.5", a.bgSoft, a.border)}>
-                  <div className="te text-[15px] leading-relaxed text-ink">{m.said}</div>
+                  <div lang={VOICE_LANG} className="te text-[15px] leading-relaxed text-ink">{m.said}</div>
                 </div>
               );
             })
@@ -749,7 +750,7 @@ export function VoiceCall({
                   className="max-w-full rounded-2xl border border-dashed border-slate-300 bg-white px-3 py-1.5 text-left transition hover:border-solid hover:border-slate-400 active:scale-[.98] disabled:opacity-50"
                   title={gloss?.[i] ?? s}
                 >
-                  <span className="te block truncate text-[13px] text-slate-800">{s}</span>
+                  <span lang={VOICE_LANG} className="te block truncate text-[13px] text-slate-800">{s}</span>
                   {gloss?.[i] && <span className="block truncate text-[11px] text-slate-500">{gloss[i]}</span>}
                 </button>
               ))}
