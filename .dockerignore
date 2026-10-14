@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+server/data
+server/cache
+.env
+android
+docs
+pitch
+reference
+*.apk

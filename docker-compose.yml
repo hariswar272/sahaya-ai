@@ -1,0 +1,12 @@
+services:
+  sahaya:
+    build: .
+    ports:
+      - "4200:4200"
+    env_file: .env
+    volumes:
+      - sahaya-data:/app/server/data
+    restart: unless-stopped
+
+volumes:
+  sahaya-data:

@@ -9,7 +9,8 @@
     "start": "node index.mjs",
     "selftest": "node scripts/selftest.mjs",
     "test": "node --test \"test/**/*.test.mjs\"",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:coverage": "node --test --experimental-test-coverage \"test/**/*.test.mjs\""
   },
   "engines": {
     "node": ">=22"

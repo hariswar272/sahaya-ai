@@ -104,6 +104,12 @@ node server/index.mjs        # http://127.0.0.1:4200
 node scripts/smoke.mjs http://127.0.0.1:4200
 ```
 
+### Run with Docker
+
+```bash
+docker compose up --build        # builds the PWA and serves everything on http://localhost:4200
+```
+
 ## Problem statement alignment: *AI for Better Living & Smarter Communities*
 
 | Challenge area | How Sahaya addresses it |
