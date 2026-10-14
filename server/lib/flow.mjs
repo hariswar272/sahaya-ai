@@ -1,4 +1,4 @@
-// Generic slot-filling voice conversation engine (generalised from reference/server.mjs).
+// Generic slot-filling voice conversation engine shared by the SOS and other voice flows.
 // The AI only extracts facts from free speech; this flow decides what to ask next, and every
 // fixed line is pre-rendered so replies play instantly.
 //

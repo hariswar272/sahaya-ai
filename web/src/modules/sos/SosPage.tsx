@@ -112,7 +112,7 @@ function IncidentResult({ incident, t }: { incident: Incident; t: T }) {
     <section className="animate-scale-in overflow-hidden rounded-2xl border border-emerald-200 bg-white shadow-sm">
       <div className="flex items-center justify-between gap-3 bg-emerald-50 px-4 py-3">
         <div className="flex items-center gap-2 font-semibold text-emerald-800">
-          <ShieldCheck className="h-5 w-5" /> {incident.id} {t("నమోదైంది", "registered")}
+          <ShieldCheck aria-hidden="true" className="h-5 w-5" /> {incident.id} {t("నమోదైంది", "registered")}
         </div>
         <PrioBadge p={incident.priority} size="md" />
       </div>
@@ -140,7 +140,7 @@ function IncidentResult({ incident, t }: { incident: Incident; t: T }) {
           to="/console/sos"
           className="press inline-flex items-center gap-1.5 rounded-xl bg-[#e11d48] px-4 py-2 text-sm font-semibold text-white hover:bg-[#be123c]"
         >
-          {t("కంట్రోల్ రూమ్ మ్యాప్‌లో చూడండి", "See it on the Control Room map")} <ArrowRight className="h-4 w-4" />
+          {t("కంట్రోల్ రూమ్ మ్యాప్‌లో చూడండి", "See it on the Control Room map")} <ArrowRight aria-hidden="true" className="h-4 w-4" />
         </Link>
       </div>
     </section>
@@ -191,11 +191,12 @@ function TextSos({ onIncident, t, lang }: { onIncident: (i: Incident) => void; t
         value={msg}
         onChange={(e) => setMsg(e.target.value)}
         rows={3}
+        aria-label="Describe your emergency"
         placeholder={t("ఉదా: మేము సింగ్ నగర్ లో ఉన్నాం, 4 మంది, నీళ్ళు నడుము వరకు…", "e.g. We are in Singh Nagar, 4 people, water up to the waist…")}
         className="w-full resize-y rounded-xl border border-slate-200 bg-white px-3 py-2 text-[15px] outline-none focus:border-[#e11d48] focus:ring-2 focus:ring-rose-100"
       />
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <select value={channel} onChange={(e) => setChannel(e.target.value as Channel)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm">
+        <select value={channel} onChange={(e) => setChannel(e.target.value as Channel)} aria-label="Channel" className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm">
           <option value="whatsapp">WhatsApp</option>
           <option value="sms">SMS</option>
           <option value="social">Social media</option>
@@ -205,9 +206,9 @@ function TextSos({ onIncident, t, lang }: { onIncident: (i: Incident) => void; t
           disabled={busy || !msg.trim()}
           className="press inline-flex items-center gap-2 rounded-xl bg-[#e11d48] px-4 py-2 text-sm font-semibold text-white hover:bg-[#be123c] disabled:opacity-50"
         >
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />} {t("SOS పంపండి", "Send SOS")}
+          {busy ? <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" /> : <Send aria-hidden="true" className="h-4 w-4" />} {t("SOS పంపండి", "Send SOS")}
         </button>
-        {err && <span className="text-sm text-red-600">{err}</span>}
+        {err && <span role="alert" className="text-sm text-red-600">{err}</span>}
       </div>
     </Panel>
   );
@@ -237,7 +238,7 @@ export default function SosPage() {
         <div className="relative flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/25 sm:h-14 sm:w-14">
-              <Siren className="h-6 w-6 sm:h-7 sm:w-7" />
+              <Siren aria-hidden="true" className="h-6 w-6 sm:h-7 sm:w-7" />
             </span>
             <div>
               <div className="mb-1 text-[11px] font-bold uppercase tracking-wider text-white/80">{t("ప్రజా భద్రత · అత్యవసర SOS", "Public safety · Disaster SOS")}</div>
@@ -253,15 +254,15 @@ export default function SosPage() {
           </div>
           <div className="flex gap-2">
             <a href="tel:112" className="sos-ring-white press inline-flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 text-sm font-bold text-[#be123c]">
-              <Phone className="h-4 w-4" /> 112
+              <Phone aria-hidden="true" className="h-4 w-4" /> 112
             </a>
             <a href="tel:108" className="press inline-flex items-center gap-1.5 rounded-xl bg-white/15 px-3 py-2 text-sm font-bold text-white ring-1 ring-white/30">
-              <Phone className="h-4 w-4" /> 108 {t("అంబులెన్స్", "Ambulance")}
+              <Phone aria-hidden="true" className="h-4 w-4" /> 108 {t("అంబులెన్స్", "Ambulance")}
             </a>
           </div>
         </div>
         <p className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-black/15 px-3 py-1 text-xs text-rose-50">
-          <MapPin className="h-3.5 w-3.5" /> {t("పైలట్ ప్రాంతం: విజయవాడ · రెస్క్యూ టీమ్‌లు నమూనా", "Pilot area: Vijayawada · rescue teams are a sample deployment")}
+          <MapPin aria-hidden="true" className="h-3.5 w-3.5" /> {t("పైలట్ ప్రాంతం: విజయవాడ · రెస్క్యూ టీమ్‌లు నమూనా", "Pilot area: Vijayawada · rescue teams are a sample deployment")}
         </p>
       </div>
 
@@ -289,7 +290,7 @@ export default function SosPage() {
               {TIPS.map(({ icon: Icon, te, en }) => (
                 <li key={en} className="flex items-start gap-3">
                   <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-rose-50 text-[#e11d48]">
-                    <Icon className="h-4 w-4" />
+                    <Icon aria-hidden="true" className="h-4 w-4" />
                   </span>
                   <span className="pt-1 text-sm font-medium text-slate-900">{t(te, en)}</span>
                 </li>

@@ -21,7 +21,7 @@ export class ErrorBoundary extends Component<Props, State> {
     return (
       <div className="container-page py-16">
         <div className="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-soft">
-          <AlertTriangle className="mx-auto h-8 w-8 text-high" />
+          <AlertTriangle aria-hidden="true" className="mx-auto h-8 w-8 text-high" />
           <div className="te mt-3 text-lg font-bold">ఈ విభాగం లోడ్ కాలేదు</div>
           <div className="text-sm text-slate-500">This section failed to load. Please refresh the page.</div>
           <button

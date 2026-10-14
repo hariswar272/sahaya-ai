@@ -77,7 +77,7 @@ export default function ScamConsole() {
         te={t("సైబర్ సెల్ కన్సోల్", "Cyber cell console")}
         en="Scam Shield · officials"
         accent="scam"
-        icon={<ShieldAlert className="h-6 w-6" />}
+        icon={<ShieldAlert aria-hidden="true" className="h-6 w-6" />}
         eyebrow={t("అధికారులు", "Officials")}
         description={t(
           "ప్రజలు ఏ మోసాలను చెక్ చేస్తున్నారో లైవ్‌గా చూడండి, ముందుగానే హెచ్చరించండి. అనామక లెక్కలు మాత్రమే, మెసేజ్ టెక్స్ట్ సేవ్ చేయము.",
@@ -89,7 +89,7 @@ export default function ScamConsole() {
             <Button
               variant="secondary"
               size="sm"
-              icon={<RefreshCw className="h-4 w-4" />}
+              icon={<RefreshCw aria-hidden="true" className="h-4 w-4" />}
               onClick={async () => {
                 await api("/api/scam/reset", {}).catch(() => {});
                 load();
@@ -98,7 +98,7 @@ export default function ScamConsole() {
               {t("డెమో రీసెట్", "Reset demo")}
             </Button>
             <Link to="/scam" className="press inline-flex h-8 items-center gap-1.5 rounded-lg bg-scam px-3 text-sm font-semibold text-white shadow-sm hover:bg-scam-700">
-              <ShieldCheck className="h-4 w-4" /> {t("ప్రజల చెకర్", "Citizen checker")}
+              <ShieldCheck aria-hidden="true" className="h-4 w-4" /> {t("ప్రజల చెకర్", "Citizen checker")}
             </Link>
           </>
         }
@@ -106,25 +106,25 @@ export default function ScamConsole() {
 
       {error && (
         <div className="mb-4 flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
-          <AlertTriangle className="h-4 w-4" /> {error}
+          <AlertTriangle aria-hidden="true" className="h-4 w-4" /> {error}
         </div>
       )}
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat className="animate-fade-up" label={t("ఈ వారం చెక్‌లు", "Checks this week")} value={stats ? <CountUp value={weekTotal} /> : "–"} icon={<ShieldCheck className="h-4 w-4" />} />
+        <Stat className="animate-fade-up" label={t("ఈ వారం చెక్‌లు", "Checks this week")} value={stats ? <CountUp value={weekTotal} /> : "–"} icon={<ShieldCheck aria-hidden="true" className="h-4 w-4" />} />
         <Stat
           className="animate-fade-up [animation-delay:60ms]"
           label={t("మోసాలు", "Scams caught")}
           value={stats ? <CountUp value={stats.verdicts.scam} /> : "–"}
           tone="critical"
-          icon={<ShieldAlert className="h-4 w-4" />}
+          icon={<ShieldAlert aria-hidden="true" className="h-4 w-4" />}
         />
         <Stat
           className="animate-fade-up [animation-delay:120ms]"
           label={t("అనుమానాస్పదం", "Suspicious")}
           value={stats ? <CountUp value={stats.verdicts.suspicious} /> : "–"}
           tone="high"
-          icon={<AlertTriangle className="h-4 w-4" />}
+          icon={<AlertTriangle aria-hidden="true" className="h-4 w-4" />}
         />
         <Stat
           className="animate-fade-up [animation-delay:180ms]"
@@ -132,14 +132,14 @@ export default function ScamConsole() {
           value={<span className="te text-lg leading-tight">{top ? name(top.label) : "–"}</span>}
           hint={top ? `${top.count} ${t("చెక్‌లు", "checks")}` : undefined}
           tone="scam"
-          icon={<TrendingUp className="h-4 w-4" />}
+          icon={<TrendingUp aria-hidden="true" className="h-4 w-4" />}
         />
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Card className="animate-fade-up [animation-delay:120ms]">
           <CardHeader
-            icon={<TrendingUp className="h-5 w-5 text-scam" />}
+            icon={<TrendingUp aria-hidden="true" className="h-5 w-5 text-scam" />}
             title={<span className="te">{t("వారం ట్రెండ్", "Weekly trend")}</span>}
             subtitle={t("రోజువారీ మోసం / అనుమానాస్పద చెక్‌లు, రకం వారీగా (7 రోజులు)", "Scam and suspicious checks per day, by type (last 7 days)")}
           />
@@ -177,7 +177,7 @@ export default function ScamConsole() {
         </Card>
 
         <Card className="animate-fade-up [animation-delay:180ms]">
-          <CardHeader icon={<ShieldAlert className="h-5 w-5 text-scam" />} title={<span className="te">{t("ఈ వారం టాప్ మోసాలు", "Top scams this week")}</span>} subtitle={t("గత 7 రోజులు", "Last 7 days")} />
+          <CardHeader icon={<ShieldAlert aria-hidden="true" className="h-5 w-5 text-scam" />} title={<span className="te">{t("ఈ వారం టాప్ మోసాలు", "Top scams this week")}</span>} subtitle={t("గత 7 రోజులు", "Last 7 days")} />
           <ul className="space-y-2.5 p-4">
             {(stats?.top ?? []).slice(0, 7).map((x, i) => (
               <li key={x.type} className="animate-fade-up" style={{ animationDelay: `${240 + i * 60}ms` }}>
@@ -193,7 +193,7 @@ export default function ScamConsole() {
             {stats && !stats.top?.length && (
               <li>
                 <EmptyState
-                  icon={<ShieldCheck className="h-8 w-8" />}
+                  icon={<ShieldCheck aria-hidden="true" className="h-8 w-8" />}
                   title={t("ఈ వారం ఇంకా మోసాలు లేవు", "No scams reported this week")}
                   hint={t("ప్రజలు చెక్ చేసిన మోసాలు ఇక్కడ రకాల వారీగా కనిపిస్తాయి.", "Scams people check on the citizen page show up here by type.")}
                 />
@@ -211,7 +211,7 @@ export default function ScamConsole() {
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
         <Card className="animate-fade-up [animation-delay:200ms]">
           <CardHeader
-            icon={<Radio className="h-5 w-5 text-scam" />}
+            icon={<Radio aria-hidden="true" className="h-5 w-5 text-scam" />}
             title={
               <span className="flex items-center gap-2">
                 <span className="te">{t("లైవ్ ఫీడ్", "Live feed")}</span>
@@ -225,7 +225,7 @@ export default function ScamConsole() {
           />
           <ul className="scrollbar-thin max-h-[360px] divide-y divide-slate-100 overflow-auto">
             {feed.length === 0 && (
-              <EmptyState icon={<Radio className="h-8 w-8" />} title={t("ఇంకా చెక్‌లు లేవు", "No checks yet")} hint={t("ప్రజల పేజీలో చేసిన చెక్‌లు ఇక్కడ వెంటనే కనిపిస్తాయి.", "Checks made on the citizen page appear here instantly.")} />
+              <EmptyState icon={<Radio aria-hidden="true" className="h-8 w-8" />} title={t("ఇంకా చెక్‌లు లేవు", "No checks yet")} hint={t("ప్రజల పేజీలో చేసిన చెక్‌లు ఇక్కడ వెంటనే కనిపిస్తాయి.", "Checks made on the citizen page appear here instantly.")} />
             )}
             {feed.map((c) => {
               const v = VERDICT[c.verdict] ?? VERDICT.suspicious;
@@ -297,7 +297,7 @@ function AwarenessCard() {
   return (
     <Card className="animate-fade-up [animation-delay:260ms]">
       <CardHeader
-        icon={<Megaphone className="h-5 w-5 text-scam" />}
+        icon={<Megaphone aria-hidden="true" className="h-5 w-5 text-scam" />}
         title={<span className="te">{t("అవగాహన సందేశం", "Awareness message")}</span>}
         subtitle={t("వాట్సాప్ గ్రూప్‌లకు పంపదగిన హెచ్చరిక", "Generate a WhatsApp-ready public warning")}
       />
@@ -310,11 +310,11 @@ function AwarenessCard() {
               </option>
             ))}
           </Select>
-          <Button accent="scam" loading={busy} icon={<Megaphone className="h-4 w-4" />} onClick={generate}>
+          <Button accent="scam" loading={busy} icon={<Megaphone aria-hidden="true" className="h-4 w-4" />} onClick={generate}>
             {t("తయారు చేయండి", "Generate")}
           </Button>
         </div>
-        {error && <div className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
+        {error && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
         {msg ? (
           <div className="space-y-2.5">
             {blocks.map((b) => (
@@ -323,7 +323,7 @@ function AwarenessCard() {
                   <span className="text-xs font-bold uppercase tracking-wide text-slate-500">{b.title}</span>
                   <div className="flex gap-1">
                     <button type="button" onClick={() => copy(b.id, b.text)} className="press inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-slate-600 hover:bg-white">
-                      {copied === b.id ? <Check className="h-3.5 w-3.5 text-low" /> : <Copy className="h-3.5 w-3.5" />}
+                      {copied === b.id ? <Check aria-hidden="true" className="h-3.5 w-3.5 text-low" /> : <Copy aria-hidden="true" className="h-3.5 w-3.5" />}
                       {copied === b.id ? t("కాపీ అయింది", "Copied") : t("కాపీ", "Copy")}
                     </button>
                     <a
@@ -332,7 +332,7 @@ function AwarenessCard() {
                       rel="noopener noreferrer"
                       className="press inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-green-700 hover:bg-white"
                     >
-                      <Share2 className="h-3.5 w-3.5" /> WhatsApp
+                      <Share2 aria-hidden="true" className="h-3.5 w-3.5" /> WhatsApp
                     </a>
                   </div>
                 </div>

@@ -13,7 +13,7 @@ export default function NotFound() {
     <div className="container-page py-20">
       <div className="mx-auto max-w-md text-center">
         <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-primary-50 text-primary">
-          <Compass className="h-7 w-7" />
+          <Compass aria-hidden="true" className="h-7 w-7" />
         </div>
         <h1 className="te mt-5 text-2xl font-extrabold text-ink">
           {isModule ? t("ఈ విభాగం సిద్ధమవుతోంది", "This section is being set up") : t("పేజీ దొరకలేదు", "Page not found")}
@@ -22,7 +22,7 @@ export default function NotFound() {
           {isModule ? t("కాసేపట్లో మళ్ళీ చూడండి.", "Please check back in a moment.") : t("మీరు వెతుకుతున్న పేజీ లేదు.", "The page you're looking for doesn't exist.")}
         </p>
         <div className="mt-6 flex justify-center">
-          <ButtonLink to="/" icon={<Home className="h-4 w-4" />}>
+          <ButtonLink to="/" icon={<Home aria-hidden="true" className="h-4 w-4" />}>
             {t("హోమ్‌కి వెళ్ళండి", "Go home")}
           </ButtonLink>
         </div>

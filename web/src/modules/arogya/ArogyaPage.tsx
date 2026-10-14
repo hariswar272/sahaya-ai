@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import { CallPanel, PROGRAM_UI, usePatients, type ProgramId } from "./shared";
 
 const STEPS = [
-  { icon: <PhoneCall className="h-5 w-5" />, te: "AI కాల్ చేస్తుంది", title: "AI calls", en: "AI calls the patient in their own language, on any basic phone" },
-  { icon: <ClipboardCheck className="h-5 w-5" />, te: "4–6 చిన్న ప్రశ్నలు", title: "4–6 short questions", en: "Asks about danger signs and medicines, in plain words" },
-  { icon: <ShieldAlert className="h-5 w-5" />, te: "ప్రమాద సంకేతాలు గుర్తిస్తుంది", title: "Spots danger signs", en: "Fixed medical rules set the risk, with a reason for every flag" },
-  { icon: <BellRing className="h-5 w-5" />, te: "ASHA అక్కకు అలర్ట్", title: "Alerts the ASHA worker", en: "High-risk patients reach the ASHA worker the same day" },
+  { icon: <PhoneCall aria-hidden="true" className="h-5 w-5" />, te: "AI కాల్ చేస్తుంది", title: "AI calls", en: "AI calls the patient in their own language, on any basic phone" },
+  { icon: <ClipboardCheck aria-hidden="true" className="h-5 w-5" />, te: "4–6 చిన్న ప్రశ్నలు", title: "4–6 short questions", en: "Asks about danger signs and medicines, in plain words" },
+  { icon: <ShieldAlert aria-hidden="true" className="h-5 w-5" />, te: "ప్రమాద సంకేతాలు గుర్తిస్తుంది", title: "Spots danger signs", en: "Fixed medical rules set the risk, with a reason for every flag" },
+  { icon: <BellRing aria-hidden="true" className="h-5 w-5" />, te: "ASHA అక్కకు అలర్ట్", title: "Alerts the ASHA worker", en: "High-risk patients reach the ASHA worker the same day" },
 ];
 
 const PROGRAMS = Object.keys(PROGRAM_UI) as ProgramId[];
@@ -41,14 +41,14 @@ export default function ArogyaPage() {
         eyebrow={t("ఆరోగ్యం · ఆరోగ్య కాల్", "Healthcare · Arogya Call")}
         accent="arogya"
         variant="bold"
-        icon={<HeartPulse className="h-6 w-6" />}
+        icon={<HeartPulse aria-hidden="true" className="h-6 w-6" />}
         description={t(
           "గర్భిణీలు, బీపీ / షుగర్ పేషెంట్లు, టీబీ పేషెంట్లకు AI వారి భాషలో చిన్న కాల్ చేస్తుంది. ప్రమాద సంకేతాలు, మిస్ అయిన మందులు అడిగి, ఈరోజు ఎవరిని కలవాలో ASHA అక్కకు చెబుతుంది.",
           "Pregnant women, BP and diabetes patients and TB patients get a short call from AI in their own language. It checks for danger signs and missed medicines, then tells their ASHA worker who needs a visit today.",
         )}
         actions={
           <Link to="/console/arogya">
-            <Button variant="secondary" className="press" icon={<Stethoscope className="h-4 w-4" />}>
+            <Button variant="secondary" className="press" icon={<Stethoscope aria-hidden="true" className="h-4 w-4" />}>
               {t("ASHA డ్యాష్‌బోర్డ్", "ASHA dashboard")}
             </Button>
           </Link>
@@ -62,7 +62,7 @@ export default function ArogyaPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-3">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-arogya text-white shadow-[0_10px_22px_-10px_rgba(13,148,136,0.6)]">
-                  <Mic className="h-5 w-5" />
+                  <Mic aria-hidden="true" className="h-5 w-5" />
                 </span>
                 <div>
                   <h2 className="text-xl font-extrabold tracking-tight text-ink sm:text-2xl">{t("ఇప్పుడే సహాయతో మాట్లాడండి", "Talk to Sahaya now")}</h2>
@@ -70,7 +70,7 @@ export default function ArogyaPage() {
                 </div>
               </div>
               <Link to="/console/phone?flow=arogya" className="shrink-0">
-                <Button variant="secondary" className="press h-11 w-full sm:w-auto" icon={<Phone className="h-4 w-4" />}>
+                <Button variant="secondary" className="press h-11 w-full sm:w-auto" icon={<Phone aria-hidden="true" className="h-4 w-4" />}>
                   {t("మీ ఫోన్‌కి కాల్ పొందండి", "Get a call on your phone")}
                 </Button>
               </Link>
@@ -129,7 +129,7 @@ export default function ArogyaPage() {
                   </div>
                 </div>
                 <div className="lg:col-span-2">
-                  <Button type="submit" size="lg" accent="arogya" className="press h-12 w-full sm:w-auto" disabled={!name.trim()} icon={<ArrowRight className="h-4 w-4" />}>
+                  <Button type="submit" size="lg" accent="arogya" className="press h-12 w-full sm:w-auto" disabled={!name.trim()} icon={<ArrowRight aria-hidden="true" className="h-4 w-4" />}>
                     {t("కాల్‌కి కొనసాగండి", "Continue to the call")}
                   </Button>
                 </div>
@@ -188,7 +188,7 @@ export default function ArogyaPage() {
 
       <Reveal className="mt-10">
         <section className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-soft">
-          <Lock className="mt-0.5 h-5 w-5 shrink-0 text-arogya" />
+          <Lock aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-arogya" />
           <div className="text-sm leading-relaxed text-slate-600">
             <div className="te mb-1 font-semibold text-ink">{t("మీ వివరాలు సురక్షితం", "Your details stay private")}</div>
             {t(

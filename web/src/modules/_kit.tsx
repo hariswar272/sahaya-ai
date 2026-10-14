@@ -120,7 +120,7 @@ export function CallIntro({ accent, flow, onTalk, className }: { accent: Accent;
     >
       <div className="flex items-start gap-3">
         <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl text-white" style={{ background: a.hex, boxShadow: `0 10px 22px -10px ${a.glow}` }}>
-          <Mic className="h-5 w-5" />
+          <Mic aria-hidden="true" className="h-5 w-5" />
         </span>
         <div>
           <div className="text-lg font-extrabold tracking-tight text-ink sm:text-xl">{t("ఇప్పుడే సహాయతో మాట్లాడండి", "Talk to Sahaya now")}</div>
@@ -135,14 +135,14 @@ export function CallIntro({ accent, flow, onTalk, className }: { accent: Accent;
             className="press inline-flex h-11 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 sm:flex-none"
             style={{ background: a.hex }}
           >
-            <Mic className="h-4 w-4" /> {t("ఇప్పుడే మాట్లాడండి", "Talk now")}
+            <Mic aria-hidden="true" className="h-4 w-4" /> {t("ఇప్పుడే మాట్లాడండి", "Talk now")}
           </button>
         )}
         <Link
           to={`/console/phone?flow=${flow}`}
           className="press inline-flex h-11 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-4 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50 sm:flex-none"
         >
-          <Phone className="h-4 w-4" /> {t("మీ ఫోన్‌కి కాల్ పొందండి", "Get a call on your phone")}
+          <Phone aria-hidden="true" className="h-4 w-4" /> {t("మీ ఫోన్‌కి కాల్ పొందండి", "Get a call on your phone")}
         </Link>
       </div>
     </div>

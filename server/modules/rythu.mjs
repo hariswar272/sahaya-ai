@@ -123,7 +123,9 @@ function linreg(ys) {
 // commodities from various markets"). Real numbers only: if the API has never
 // answered, callers say live prices are unavailable instead of guessing.
 const AGMARK_URL = "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070";
-const SAMPLE_KEY = "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b"; // public key from the data.gov.in docs
+// Not a secret: this is the public demo key printed in the data.gov.in API docs
+// (https://data.gov.in/help/how-use-datasets-apis). Set DATAGOV_API_KEY for a real quota.
+const DATAGOV_PUBLIC_SAMPLE_KEY = "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b";
 const PRICE_TTL = 60 * MIN;
 const STATES = ["Andhra Pradesh", "Telangana"];
 const COMMODITY_MATCH = { tomato: ["tomato"], chilli: ["dry chillies", "green chilli", "chilly", "chillies"], cotton: ["cotton", "kapas"], paddy: ["paddy"], onion: ["onion"], groundnut: ["groundnut"], maize: ["maize"], turmeric: ["turmeric"] };
@@ -174,7 +176,7 @@ function marketCoords(m) {
 }
 
 async function agmarkGet(filters) {
-  const key = (process.env.DATAGOV_API_KEY || "").trim() || SAMPLE_KEY;
+  const key = (process.env.DATAGOV_API_KEY || "").trim() || DATAGOV_PUBLIC_SAMPLE_KEY;
   const qs = new URLSearchParams({ "api-key": key, format: "json", limit: "1000", offset: "0" });
   for (const [k, v] of Object.entries(filters)) qs.append(`filters[${k}]`, v);
   const res = await fetch(`${AGMARK_URL}?${qs}`, { signal: AbortSignal.timeout(15000), headers: { Accept: "application/json" } });
@@ -925,3 +927,6 @@ export default {
     }));
   },
 };
+
+// Exposed for tests.
+export { summarizeWeather, weatherLine, adviceLine, alertTemplate, linreg, km, findPlace, findCrop, canonicalPlace, cropOfCommodity, normRecord, toIso, CROPS };

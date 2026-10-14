@@ -6,7 +6,7 @@ import { useLang } from "@/lib/i18n";
 export function LogoMark({ className, iconClassName }: { className?: string; iconClassName?: string }) {
   return (
     <span aria-hidden className={cn("grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary to-sos text-white shadow-sm", className)}>
-      <HeartHandshake className={cn("h-5 w-5", iconClassName)} strokeWidth={2.2} />
+      <HeartHandshake aria-hidden="true" className={cn("h-5 w-5", iconClassName)} strokeWidth={2.2} />
     </span>
   );
 }

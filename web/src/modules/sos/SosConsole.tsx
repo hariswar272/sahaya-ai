@@ -77,7 +77,7 @@ function ChannelIcon({ c }: { c: Channel }) {
   const Icon = c === "voice" ? Phone : c === "whatsapp" ? MessageCircle : c === "sms" ? MessageSquare : Globe;
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600">
-      <Icon className="h-3 w-3" /> {CHANNEL[c]}
+      <Icon aria-hidden="true" className="h-3 w-3" /> {CHANNEL[c]}
     </span>
   );
 }
@@ -148,7 +148,7 @@ function Stat({ label, te, value, total, tone = "#0f172a", icon: Icon, hint, del
       <div className="flex items-start justify-between gap-2">
         <div className="truncate text-[11px] font-semibold uppercase tracking-wider text-slate-500">{t(te, label)}</div>
         <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl" style={{ backgroundColor: `${tone}14`, color: tone }}>
-          <Icon className="h-4 w-4" />
+          <Icon aria-hidden="true" className="h-4 w-4" />
         </span>
       </div>
       <div className="mt-1 text-3xl font-extrabold leading-none tracking-tight tabular-nums" style={{ color: tone }}>
@@ -173,7 +173,7 @@ function ForecastTab({ signature }: { signature: string }) {
     };
   }, [signature]);
   if (err) return <p className="text-sm text-red-600">{err}</p>;
-  if (!fc) return <Loader2 className="h-5 w-5 animate-spin text-slate-400" />;
+  if (!fc) return <Loader2 aria-hidden="true" className="h-5 w-5 animate-spin text-slate-400" />;
   return (
     <div>
       <p className="mb-2 text-xs text-slate-500">
@@ -254,14 +254,14 @@ function ReportTab() {
           disabled={busy}
           className="inline-flex items-center gap-2 rounded-xl bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 disabled:opacity-60"
         >
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />} Generate report for the Collector
+          {busy ? <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" /> : <Sparkles aria-hidden="true" className="h-4 w-4" />} Generate report for the Collector
         </button>
         {report && (
           <span className="rounded-full bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-700 ring-1 ring-blue-200">
             AI: {report.engine} · {new Date(report.at).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}
           </span>
         )}
-        {err && <span className="text-sm text-red-600">{err}</span>}
+        {err && <span role="alert" className="text-sm text-red-600">{err}</span>}
       </div>
       {report ? (
         <div className="mt-3 space-y-1.5 rounded-xl bg-slate-50 p-4 text-[13.5px] leading-relaxed text-slate-800">
@@ -323,11 +323,12 @@ function SimTab({ onCreated }: { onCreated: (i: Incident) => void }) {
         value={msg}
         onChange={(e) => setMsg(e.target.value)}
         rows={3}
+        aria-label="Incoming SOS message"
         placeholder={t("ఉదా: అన్నా మేము పాయకాపురం లో ఉన్నాం, 6 మంది, అమ్మకి డయాలసిస్…", "e.g. We're in Payakapuram, 6 people, mother needs dialysis…")}
         className="w-full resize-y rounded-xl border border-slate-200 px-3 py-2 text-[14px] outline-none focus:border-[#e11d48] focus:ring-2 focus:ring-rose-100"
       />
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <select value={channel} onChange={(e) => setChannel(e.target.value as Channel)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm">
+        <select value={channel} onChange={(e) => setChannel(e.target.value as Channel)} aria-label="Channel" className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm">
           <option value="whatsapp">WhatsApp</option>
           <option value="sms">SMS</option>
           <option value="social">Social media</option>
@@ -337,9 +338,9 @@ function SimTab({ onCreated }: { onCreated: (i: Incident) => void }) {
           disabled={busy || !msg.trim()}
           className="inline-flex items-center gap-2 rounded-xl bg-[#e11d48] px-4 py-2 text-sm font-semibold text-white hover:bg-[#be123c] disabled:opacity-50"
         >
-          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />} Triage with AI
+          {busy ? <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" /> : <Send aria-hidden="true" className="h-4 w-4" />} Triage with AI
         </button>
-        {status && <span className="text-sm text-slate-600">{status}</span>}
+        {status && <span role="status" className="text-sm text-slate-600">{status}</span>}
       </div>
     </div>
   );
@@ -486,7 +487,7 @@ export default function SosConsole() {
       <div className="mb-5 animate-fade-up overflow-hidden rounded-3xl bg-gradient-to-br from-rose-50 via-white to-white p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-18px_rgba(225,29,72,0.35)] ring-1 ring-rose-100 sm:p-6">
         <div className="flex flex-wrap items-center gap-4">
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#e11d48] text-white shadow-[0_8px_20px_-8px_rgba(225,29,72,0.6)]">
-            <Siren className="h-6 w-6" />
+            <Siren aria-hidden="true" className="h-6 w-6" />
           </span>
           <div className="min-w-0">
             <div className="text-[11px] font-bold uppercase tracking-wider text-rose-600">{t("అత్యవసర SOS · అధికారుల కన్సోల్", "Disaster SOS · Officials console")}</div>
@@ -506,13 +507,13 @@ export default function SosConsole() {
               to="/sos"
               className="press inline-flex h-11 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-[#e11d48] px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-[#be123c] sm:flex-none"
             >
-              <Phone className="h-4 w-4" /> {t("పౌరుల హెల్ప్‌లైన్", "Citizen helpline")}
+              <Phone aria-hidden="true" className="h-4 w-4" /> {t("పౌరుల హెల్ప్‌లైన్", "Citizen helpline")}
             </Link>
             <button
               onClick={reset}
               className="press inline-flex h-11 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-white px-4 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50 sm:flex-none"
             >
-              <RotateCcw className="h-4 w-4" /> {t("డెమో రీసెట్", "Reset demo")}
+              <RotateCcw aria-hidden="true" className="h-4 w-4" /> {t("డెమో రీసెట్", "Reset demo")}
             </button>
           </div>
         </div>
@@ -538,7 +539,7 @@ export default function SosConsole() {
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(340px,1fr)]">
         <div className="min-w-0 space-y-4">
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <div className="relative h-[380px] sm:h-[460px] lg:h-[520px]">
+            <div className="relative h-[380px] sm:h-[460px] lg:h-[520px]" role="region" aria-label="Live map of SOS incidents and rescue teams">
               <MapContainer center={CENTER} zoom={13} scrollWheelZoom className="h-full w-full" style={{ background: "#e5e7eb" }}>
                 {/* CARTO basemaps now watermark "API KEY REQUIRED"; OSM tiles need no key. */}
                 <TileLayer
@@ -621,7 +622,7 @@ export default function SosConsole() {
                     tab === id ? "border-[#1d4ed8] text-slate-900" : "border-transparent text-slate-500 hover:text-slate-800"
                   }`}
                 >
-                  <Icon className="h-4 w-4" /> {label}
+                  <Icon aria-hidden="true" className="h-4 w-4" /> {label}
                 </button>
               ))}
             </div>
@@ -637,7 +638,7 @@ export default function SosConsole() {
           className="flex min-h-[420px] flex-col lg:max-h-[calc(100vh-150px)]"
           title={
             <span className="flex items-center gap-2">
-              <Activity className="h-4 w-4 text-[#e11d48]" /> {t("ప్రాధాన్యత క్యూ", "Priority queue")}
+              <Activity aria-hidden="true" className="h-4 w-4 text-[#e11d48]" /> {t("ప్రాధాన్యత క్యూ", "Priority queue")}
             </span>
           }
           sub={t("AI వివరాలు తీస్తుంది · నియమాలు ప్రాధాన్యత నిర్ణయిస్తాయి · అత్యవసర కేసులు ఆటోమేటిక్‌గా పంపబడతాయి", "AI extracts the facts · rules set the priority · critical cases are auto-dispatched")}
@@ -669,14 +670,14 @@ export default function SosConsole() {
             {!loading && queue.length === 0 && (
               <div className="flex animate-fade-up flex-col items-center px-6 py-12 text-center">
                 <span className="mb-3 grid h-14 w-14 place-items-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
-                  <CheckCircle2 className="h-7 w-7" />
+                  <CheckCircle2 aria-hidden="true" className="h-7 w-7" />
                 </span>
                 <div className="text-base font-bold text-ink">{t("ప్రస్తుతం యాక్టివ్ SOS లేవు", "No active SOS right now")}</div>
                 <p className="mt-1 max-w-xs text-sm text-slate-500">
                   {t("కొత్త కాల్స్, మెసేజ్‌లు ఇక్కడ లైవ్‌గా కనిపిస్తాయి. /sos నుంచి ప్రయత్నించండి.", "New calls and messages appear here live. Try one from the SOS page.")}
                 </p>
                 <Link to="/sos" className="press mt-4 inline-flex h-11 items-center gap-1.5 rounded-xl bg-[#e11d48] px-4 text-sm font-semibold text-white shadow-sm hover:bg-[#be123c]">
-                  <Phone className="h-4 w-4" /> {t("SOS కాల్ ప్రయత్నించండి", "Try an SOS call")}
+                  <Phone aria-hidden="true" className="h-4 w-4" /> {t("SOS కాల్ ప్రయత్నించండి", "Try an SOS call")}
                 </Link>
               </div>
             )}
@@ -703,7 +704,7 @@ export default function SosConsole() {
                   {i.landmark && <span className="font-normal text-slate-500"> · {i.landmark}</span>}
                 </div>
                 <p className="mt-0.5 text-[13px] leading-snug text-slate-600">
-                  <Users className="mr-1 inline h-3.5 w-3.5 align-[-2px] text-slate-400" />
+                  <Users aria-hidden="true" className="mr-1 inline h-3.5 w-3.5 align-[-2px] text-slate-400" />
                   {i.summary}
                 </p>
                 <p className="mt-1 text-[11.5px] text-slate-400">Why: {i.reasons.join("; ")}</p>
@@ -716,7 +717,7 @@ export default function SosConsole() {
                   )}
                   {i.status === "resolved" && (
                     <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">
-                      <CheckCircle2 className="h-3.5 w-3.5" /> {t("రక్షించబడ్డారు", "Rescued / resolved")}
+                      <CheckCircle2 aria-hidden="true" className="h-3.5 w-3.5" /> {t("రక్షించబడ్డారు", "Rescued / resolved")}
                     </span>
                   )}
                   <div className="ml-auto flex gap-1.5" onClick={(e) => e.stopPropagation()}>
@@ -761,7 +762,7 @@ export default function SosConsole() {
         </Panel>
       </div>
 
-      <div className="pointer-events-none fixed bottom-4 right-4 z-[1000] flex max-w-[calc(100vw-32px)] flex-col gap-2">
+      <div role="status" aria-live="polite" className="pointer-events-none fixed bottom-4 right-4 z-[1000] flex max-w-[calc(100vw-32px)] flex-col gap-2">
         {toasts.map((t) => (
           <div
             key={t.id}

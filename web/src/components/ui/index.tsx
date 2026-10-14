@@ -65,7 +65,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 ) {
   return (
     <button ref={ref} type={type} disabled={disabled || loading} className={buttonClasses({ variant, size, accent, className })} {...rest}>
-      {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : icon}
+      {loading ? <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" /> : icon}
       {children}
     </button>
   );
@@ -469,7 +469,7 @@ export function T({ children }: { children: string }) {
 }
 
 export function Spinner({ className }: { className?: string }) {
-  return <Loader2 className={cn("h-5 w-5 animate-spin text-slate-400", className)} />;
+  return <Loader2 aria-hidden="true" className={cn("h-5 w-5 animate-spin text-slate-400", className)} />;
 }
 
 export function EmptyState({ icon, title, hint, className }: { icon?: ReactNode; title: ReactNode; hint?: ReactNode; className?: string }) {

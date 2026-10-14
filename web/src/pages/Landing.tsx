@@ -256,7 +256,7 @@ function HeroDevice({ mx, my, reduce, ready }: { mx: MotionValue<number>; my: Mo
           <div className="animate-float [animation-delay:-1.5s]">
             <div className="glass-badge flex items-center gap-2.5 rounded-2xl px-3 py-2.5">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-green-600 text-white">
-                <Play className="h-3.5 w-3.5 fill-current" />
+                <Play aria-hidden="true" className="h-3.5 w-3.5 fill-current" />
               </span>
               <div className="leading-tight">
                 <div className="text-xs font-bold text-ink">Live · AI speaking Telugu</div>
@@ -271,7 +271,7 @@ function HeroDevice({ mx, my, reduce, ready }: { mx: MotionValue<number>; my: Mo
             <div className="glass-badge rounded-2xl px-3 py-2.5">
               <div className="flex items-center gap-1.5">
                 <span className="rounded-md bg-critical px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-white">Critical</span>
-                <ArrowRight className="h-3.5 w-3.5 text-slate-400" />
+                <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 text-slate-400" />
                 <span className="text-xs font-bold text-ink">Boat team dispatched</span>
               </div>
               <div className="mt-1 text-[11px] text-slate-500">Singh Nagar · 5 people · ETA 9 min</div>
@@ -363,7 +363,7 @@ export default function Landing() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
               </span>
-              <AudioLines className="h-4 w-4 text-green-600" />
+              <AudioLines aria-hidden="true" className="h-4 w-4 text-green-600" />
               AI helpline · speaks Telugu
             </motion.div>
 
@@ -391,10 +391,10 @@ export default function Landing() {
                       className="focus-ring group flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-ink shadow-sm transition hover:-translate-y-px hover:border-slate-300 hover:shadow-md active:scale-[.98] lg:py-[clamp(.3rem,1vh,.5rem)]"
                     >
                       <span className={cn("grid h-7 w-7 shrink-0 place-items-center rounded-lg text-white", a.bg)}>
-                        <l.icon className="h-4 w-4" />
+                        <l.icon aria-hidden="true" className="h-4 w-4" />
                       </span>
                       <span className="truncate">{l.chip}</span>
-                      <ArrowRight className="ml-auto h-4 w-4 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-slate-500" />
+                      <ArrowRight aria-hidden="true" className="ml-auto h-4 w-4 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-slate-500" />
                     </Link>
                   </motion.div>
                 );
@@ -421,13 +421,13 @@ export default function Landing() {
             <motion.div {...blurIn(h1.length + 7, reduce, ready)} className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-slate-500 lg:mt-[clamp(.6rem,1.8vh,1rem)]">
               {["Free", "Android 7+", "Works on any phone"].map((x) => (
                 <span key={x} className="inline-flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-green-600" />
+                  <Check aria-hidden="true" className="h-4 w-4 text-green-600" />
                   {x}
                 </span>
               ))}
               <a href="#how" className="focus-ring inline-flex items-center gap-0.5 rounded font-semibold text-slate-500 transition hover:text-ink">
                 See how it works
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight aria-hidden="true" className="h-4 w-4" />
               </a>
             </motion.div>
           </div>
@@ -443,7 +443,7 @@ export default function Landing() {
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
             {POWERED.map((p) => (
               <span key={p.t} className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition hover:text-slate-600">
-                <p.icon className="h-4 w-4" />
+                <p.icon aria-hidden="true" className="h-4 w-4" />
                 {p.t}
               </span>
             ))}
@@ -461,7 +461,7 @@ export default function Landing() {
                 <li className="hover-lift relative h-full rounded-2xl border border-white bg-white/85 p-7 shadow-soft">
                   <div className="flex items-center justify-between">
                     <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-primary to-sos text-white shadow-sm">
-                      <s.icon className="h-5 w-5" />
+                      <s.icon aria-hidden="true" className="h-5 w-5" />
                     </span>
                     <span className="text-3xl font-extrabold text-slate-200">0{i + 1}</span>
                   </div>
@@ -481,7 +481,7 @@ export default function Landing() {
             <Heading
               eyebrow={
                 <span className="inline-flex items-center gap-1.5 text-green-700">
-                  <PhoneCall className="h-4 w-4" />
+                  <PhoneCall aria-hidden="true" className="h-4 w-4" />
                   Real calling agent
                 </span>
               }
@@ -497,7 +497,7 @@ export default function Landing() {
                 <Reveal key={p.en} delay={120 + i * 90}>
                   <li className="flex gap-3">
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary-50 text-primary">
-                      <p.icon className="h-5 w-5" />
+                      <p.icon aria-hidden="true" className="h-5 w-5" />
                     </span>
                     <span className="pt-2 text-[15px] leading-relaxed text-slate-700">{p.en}</span>
                   </li>
@@ -506,20 +506,20 @@ export default function Landing() {
             </ul>
             <Reveal delay={420}>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink to="/arogya" size="lg" icon={<Mic className="h-5 w-5" />}>
+                <ButtonLink to="/arogya" size="lg" icon={<Mic aria-hidden="true" className="h-5 w-5" />}>
                   Try in browser
                 </ButtonLink>
-                <ButtonLink to="/console/phone" size="lg" variant="secondary" icon={<PhoneCall className="h-5 w-5 text-green-600" />}>
+                <ButtonLink to="/console/phone" size="lg" variant="secondary" icon={<PhoneCall aria-hidden="true" className="h-5 w-5 text-green-600" />}>
                   Get a real call
                 </ButtonLink>
               </div>
               <div className="mt-6 flex flex-col gap-2 text-sm text-slate-500">
                 <span className="inline-flex items-center gap-2">
-                  <BadgeCheck className="h-4 w-4 text-green-600" />
+                  <BadgeCheck aria-hidden="true" className="h-4 w-4 text-green-600" />
                   Built on our production Telugu calling engine
                 </span>
                 <span className="inline-flex items-start gap-2">
-                  <Globe className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <Globe aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span>
                     <strong className="font-semibold text-green-700">Telugu today</strong> · Hindi, Tamil, Kannada, Malayalam, Marathi, Bengali, Gujarati, Punjabi, Odia,
                     English coming soon
@@ -547,7 +547,7 @@ export default function Landing() {
                     <div className={cn("absolute inset-x-0 top-0 h-1", a.bg)} />
                     <div className="flex items-start gap-4">
                       <div className={cn("grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-white shadow-sm transition-transform group-hover:scale-105", a.bg)}>
-                        <l.icon className="h-6 w-6" />
+                        <l.icon aria-hidden="true" className="h-6 w-6" />
                       </div>
                       <div className="min-w-0">
                         <h3 className="text-xl font-extrabold text-ink">{l.en}</h3>
@@ -556,11 +556,11 @@ export default function Landing() {
                     </div>
                     <p className="mt-4 text-[15px] leading-relaxed text-slate-600">{l.dEn}</p>
                     <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
-                      <ButtonLink to={l.to} accent={l.accent} icon={<ArrowRight className="h-4 w-4" />} className="flex-row-reverse">
+                      <ButtonLink to={l.to} accent={l.accent} icon={<ArrowRight aria-hidden="true" className="h-4 w-4" />} className="flex-row-reverse">
                         {l.ctaEn}
                       </ButtonLink>
                       <Link to={l.console} className="focus-ring inline-flex items-center gap-1.5 rounded text-sm font-semibold text-slate-500 transition hover:text-ink">
-                        <LayoutDashboard className="h-4 w-4" />
+                        <LayoutDashboard aria-hidden="true" className="h-4 w-4" />
                         {l.consoleEn}
                       </Link>
                     </div>
@@ -578,7 +578,7 @@ export default function Landing() {
           <Heading
             eyebrow={
               <span className="inline-flex items-center gap-1.5">
-                <Workflow className="h-4 w-4" />
+                <Workflow aria-hidden="true" className="h-4 w-4" />
                 Architecture
               </span>
             }
@@ -590,12 +590,12 @@ export default function Landing() {
               <div key={p.title} className="flex flex-col items-center gap-3 lg:flex-1 lg:flex-row">
                 <Reveal delay={i * 90} className="w-full">
                   <div className="hover-lift w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-soft lg:min-h-[124px]">
-                    <p.icon className="h-6 w-6 text-primary" />
+                    <p.icon aria-hidden="true" className="h-6 w-6 text-primary" />
                     <div className="mt-3 font-bold text-ink">{p.title}</div>
                     <div className="text-sm text-slate-500">{p.sub}</div>
                   </div>
                 </Reveal>
-                {i < PIPELINE.length - 1 && <ChevronRight className="h-5 w-5 shrink-0 rotate-90 text-slate-300 lg:rotate-0" />}
+                {i < PIPELINE.length - 1 && <ChevronRight aria-hidden="true" className="h-5 w-5 shrink-0 rotate-90 text-slate-300 lg:rotate-0" />}
               </div>
             ))}
           </div>
@@ -611,7 +611,7 @@ export default function Landing() {
               <Reveal key={w.en} delay={i * 90}>
                 <div className="hover-lift h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
                   <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary-50 text-primary">
-                    <w.icon className="h-5 w-5" />
+                    <w.icon aria-hidden="true" className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 font-extrabold text-ink">{w.en}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{w.dEn}</p>
@@ -632,7 +632,7 @@ export default function Landing() {
                     reports.
                   </p>
                   <div className="mt-6">
-                    <ButtonLink to="/console" size="lg" icon={<LayoutDashboard className="h-5 w-5" />}>
+                    <ButtonLink to="/console" size="lg" icon={<LayoutDashboard aria-hidden="true" className="h-5 w-5" />}>
                       Open officials' console
                     </ButtonLink>
                   </div>
@@ -642,7 +642,7 @@ export default function Landing() {
                     const a = accentClasses[l.accent];
                     return (
                       <Link key={l.console} to={l.console} className="focus-ring hover-lift rounded-2xl border border-white bg-white/85 p-4 hover:bg-white">
-                        <l.icon className={cn("h-5 w-5", a.text)} />
+                        <l.icon aria-hidden="true" className={cn("h-5 w-5", a.text)} />
                         <div className="mt-2 text-sm font-bold text-ink">{l.consoleEn}</div>
                         <div className="text-xs text-slate-500">{l.en}</div>
                       </Link>
@@ -671,14 +671,14 @@ export default function Landing() {
                 to="/sos"
                 className="inline-flex h-12 animate-pulse-ring items-center gap-2 rounded-xl bg-white px-5 font-bold text-sos shadow-sm transition hover:bg-sos-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1d4ed8] active:scale-95"
               >
-                <Siren className="h-5 w-5" />
+                <Siren aria-hidden="true" className="h-5 w-5" />
                 Talk to Sahaya
               </Link>
               <Link
                 to="/scam"
                 className="inline-flex h-12 items-center gap-2 rounded-xl border border-white/40 px-5 font-bold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
               >
-                <ShieldAlert className="h-5 w-5" />
+                <ShieldAlert aria-hidden="true" className="h-5 w-5" />
                 Check a message
               </Link>
             </div>

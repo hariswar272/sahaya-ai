@@ -101,10 +101,10 @@ export function AppNudge() {
                   <span className="block text-sm font-bold text-ink">Get the Android app</span>
                   <span className="block text-[11px] text-slate-500">Free · 15 MB · scan or download</span>
                 </span>
-                <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5" />
+                <ArrowRight aria-hidden="true" className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5" />
               </Link>
               <button type="button" onClick={close} aria-label="Dismiss" className="grid h-8 w-8 place-items-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
-                <X className="h-4 w-4" />
+                <X aria-hidden="true" className="h-4 w-4" />
               </button>
             </div>
           </motion.div>
@@ -124,7 +124,7 @@ export function AppNudge() {
               <span className="min-w-0 flex-1 truncate text-sm font-semibold">Install the Sahaya app</span>
               {isAndroid ? (
                 <a href={APK_URL} download onClick={close} className="inline-flex h-8 shrink-0 items-center gap-1 rounded-xl bg-white px-3 text-xs font-bold text-ink">
-                  <Download className="h-3.5 w-3.5" />
+                  <Download aria-hidden="true" className="h-3.5 w-3.5" />
                   Download
                 </a>
               ) : (
@@ -133,7 +133,7 @@ export function AppNudge() {
                 </Link>
               )}
               <button type="button" onClick={close} aria-label="Dismiss" className="grid h-8 w-8 shrink-0 place-items-center rounded-xl text-white/70 hover:text-white">
-                <X className="h-4 w-4" />
+                <X aria-hidden="true" className="h-4 w-4" />
               </button>
             </div>
           </motion.div>

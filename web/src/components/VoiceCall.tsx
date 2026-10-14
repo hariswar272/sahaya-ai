@@ -599,13 +599,13 @@ export function VoiceCall({
               )}
             >
               {state === "listening" ? (
-                <Mic className="h-5 w-5" />
+                <Mic aria-hidden="true" className="h-5 w-5" />
               ) : state === "speaking" ? (
-                <Volume2 className="h-5 w-5" />
+                <Volume2 aria-hidden="true" className="h-5 w-5" />
               ) : state === "thinking" || state === "connecting" ? (
-                <Sparkles className="h-5 w-5" />
+                <Sparkles aria-hidden="true" className="h-5 w-5" />
               ) : (
-                <Bot className="h-5 w-5" />
+                <Bot aria-hidden="true" className="h-5 w-5" />
               )}
             </div>
           </div>
@@ -618,7 +618,7 @@ export function VoiceCall({
           </div>
           <div className="flex w-full shrink-0 gap-2 sm:w-auto">
             {!inCall ? (
-              <Button size="lg" accent={accent} icon={<Phone className="h-4 w-4" />} onClick={() => {
+              <Button size="lg" accent={accent} icon={<Phone aria-hidden="true" className="h-4 w-4" />} onClick={() => {
                   unlockAudio();
                   void startCall();
                 }} className="flex-1 sm:flex-none">
@@ -630,7 +630,7 @@ export function VoiceCall({
                   <Button
                     size="lg"
                     variant={state === "listening" ? "success" : "secondary"}
-                    icon={state === "listening" ? <Send className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+                    icon={state === "listening" ? <Send aria-hidden="true" className="h-4 w-4" /> : <Mic aria-hidden="true" className="h-4 w-4" />}
                     onClick={() => {
                       unlockAudio();
                       onMic();
@@ -641,7 +641,7 @@ export function VoiceCall({
                     {state === "listening" ? t("పంపండి", "Send") : t("మాట్లాడండి", "Speak")}
                   </Button>
                 )}
-                <Button size="lg" variant="danger" icon={<PhoneOff className="h-4 w-4" />} onClick={endCall} className="flex-1 sm:flex-none">
+                <Button size="lg" variant="danger" icon={<PhoneOff aria-hidden="true" className="h-4 w-4" />} onClick={endCall} className="flex-1 sm:flex-none">
                   {t("ముగించు", "End")}
                 </Button>
               </>
@@ -677,7 +677,7 @@ export function VoiceCall({
                 return (
                   <div key={m.id} className="flex max-w-[90%] animate-fade-up items-start gap-2 self-start">
                     <div className={cn("mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full text-white", a.bg)}>
-                      <Bot className="h-4 w-4" />
+                      <Bot aria-hidden="true" className="h-4 w-4" />
                     </div>
                     <div className="rounded-2xl rounded-tl-md border border-slate-200 bg-white px-3.5 py-2.5 shadow-sm">
                       <div className="te text-[15px] leading-relaxed text-ink">{main}</div>
@@ -695,7 +695,7 @@ export function VoiceCall({
           )}
           {(state === "thinking" || state === "connecting") && (
             <div className="flex items-center gap-2 self-start rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm">
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
               {state === "connecting" ? t("కనెక్ట్ అవుతోంది…", "Connecting…") : t("AI ఆలోచిస్తోంది…", "AI is thinking…")}
             </div>
           )}
@@ -705,7 +705,7 @@ export function VoiceCall({
               onClick={hearPending}
               className="focus-ring mx-auto flex animate-scale-in items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-bold text-white shadow-lift transition hover:bg-primary-700 active:scale-95"
             >
-              <Volume2 className="h-4 w-4" />
+              <Volume2 aria-hidden="true" className="h-4 w-4" />
               Tap to hear the reply 🔊
             </button>
           )}
@@ -726,7 +726,7 @@ export function VoiceCall({
             accent={accent}
             aria-label={t("పంపండి", "Send")}
             disabled={!text.trim() || busy || state === "connecting"}
-            icon={<Send className="h-4 w-4" />}
+            icon={<Send aria-hidden="true" className="h-4 w-4" />}
             className="h-11"
           >
             <span className="hidden sm:inline">{t("పంపండి", "Send")}</span>

@@ -94,7 +94,7 @@ export function Preloader() {
                 animate={{ scale: 1, opacity: 1, boxShadow: "0 18px 50px -12px rgba(29,78,216,.55)" }}
                 transition={{ type: "spring", stiffness: 260, damping: 18 }}
               >
-                <HeartHandshake className="h-10 w-10" strokeWidth={2.2} />
+                <HeartHandshake aria-hidden="true" className="h-10 w-10" strokeWidth={2.2} />
               </motion.span>
             </div>
 

@@ -1,4 +1,4 @@
-// Aapadbandhu AI server: shared voice-AI core, auto-loaded modules, SSE, and the built web app.
+// Sahaya AI server: shared voice-AI core, auto-loaded modules, SSE, and the built web app.
 import "./lib/env.mjs";
 import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
@@ -165,8 +165,8 @@ for (const f of files) {
 
 /* ------------------------------------------------------------------ web */
 
-const NOT_BUILT = `<!doctype html><meta charset="utf-8"><title>Aapadbandhu AI</title>
-<body style="font-family:system-ui;padding:40px;max-width:640px;margin:auto"><h1>Aapadbandhu AI</h1>
+const NOT_BUILT = `<!doctype html><meta charset="utf-8"><title>Sahaya AI</title>
+<body style="font-family:system-ui;padding:40px;max-width:640px;margin:auto"><h1>Sahaya AI</h1>
 <p>The API is running. The web app is not built yet: run <code>npm run build</code> in <code>web/</code>.</p>
 <p><a href="/api/health">/api/health</a></p></body>`;
 
@@ -205,7 +205,7 @@ for (const sig of ["SIGINT", "SIGTERM"]) {
 
 await app.listen({ port: PORT, host: HOST });
 console.log(
-  `Aapadbandhu AI on http://${HOST}:${PORT} · modules: ${loaded.join(", ") || "none"}${failed.length ? ` · FAILED: ${failed.join(", ")}` : ""} · AI: ${
+  `Sahaya AI on http://${HOST}:${PORT} · modules: ${loaded.join(", ") || "none"}${failed.length ? ` · FAILED: ${failed.join(", ")}` : ""} · AI: ${
     ai.hasGemini() ? "Gemini + Sarvam fallback" : "Sarvam"
   } · voice: ${voice.hasVoice() ? "on" : "OFF (no SARVAM_API_KEY)"}`,
 );

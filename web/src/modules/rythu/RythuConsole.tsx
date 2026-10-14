@@ -57,12 +57,12 @@ function AlertCard({ a }: { a: Alert }) {
   return (
     <Card className="animate-fade-up p-4 sm:p-5">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge tone={TYPE_TONE[a.type]}><Icon className="h-3.5 w-3.5" /> <span className={cn(te && "te")}>{t(a.labelTe, a.label)}</span></Badge>
+        <Badge tone={TYPE_TONE[a.type]}><Icon aria-hidden="true" className="h-3.5 w-3.5" /> <span className={cn(te && "te")}>{t(a.labelTe, a.label)}</span></Badge>
         <span className={cn("font-semibold text-ink", te && "te")}>{t(a.districtTe, a.district)}</span>
         {(a.status as string) === "ready" || !c?.total ? (
-          <Badge tone="info"><Send className="h-3 w-3" /> {t("ప్రసారానికి సిద్ధం", "Ready to broadcast")}</Badge>
+          <Badge tone="info"><Send aria-hidden="true" className="h-3 w-3" /> {t("ప్రసారానికి సిద్ధం", "Ready to broadcast")}</Badge>
         ) : a.status === "calling" ? (
-          <Badge tone="warning"><PhoneCall className="h-3 w-3" /> {t("కాల్స్ జరుగుతున్నాయి", "Calling")}</Badge>
+          <Badge tone="warning"><PhoneCall aria-hidden="true" className="h-3 w-3" /> {t("కాల్స్ జరుగుతున్నాయి", "Calling")}</Badge>
         ) : (
           <Badge tone="success">{t("పూర్తి", "Done")}</Badge>
         )}
@@ -71,7 +71,7 @@ function AlertCard({ a }: { a: Alert }) {
       <p className={cn("mt-3 text-[15px] leading-relaxed text-ink", te && "te")}>{te ? a.te : a.en}</p>
       {!c?.total ? (
         <div className="mt-4 flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2.5 text-xs text-slate-600 ring-1 ring-slate-200/70">
-          <Users className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+          <Users aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-slate-400" />
           {t("ప్రసారానికి సిద్ధంగా ఉంది. రైతుల జాబితా కాలింగ్ ఇంజిన్‌కి కలిపాక కాల్స్ వెళ్తాయి.", "Ready to broadcast. Calls go out once a farmer list is connected to the calling engine.")}
         </div>
       ) : (
@@ -86,7 +86,7 @@ function AlertCard({ a }: { a: Alert }) {
             <span><b className="text-critical">{c.no_answer}</b> {t("ఎత్తలేదు", "no answer")}</span>
             <span><b>{c.busy}</b> {t("బిజీ", "busy")}</span>
             <span><b>{c.pending}</b> {t("మిగిలినవి", "pending")}</span>
-            <span className="ml-auto inline-flex items-center gap-1"><Users className="h-3.5 w-3.5" /> {c.total} {t("రైతులు", "farmers")}</span>
+            <span className="ml-auto inline-flex items-center gap-1"><Users aria-hidden="true" className="h-3.5 w-3.5" /> {c.total} {t("రైతులు", "farmers")}</span>
           </div>
         </>
       )}
@@ -217,7 +217,7 @@ export default function RythuConsole() {
         te="వ్యవసాయ అధికారి కన్సోల్"
         en="Agri officer console: Rythu Call alerts"
         accent="rythu"
-        icon={<Megaphone className="h-6 w-6" />}
+        icon={<Megaphone aria-hidden="true" className="h-6 w-6" />}
         eyebrow={t("అధికారులు · వ్యవసాయం", "Officials · Agriculture")}
         description={t(
           "జిల్లాల వారీగా వాతావరణ ప్రమాదం చూడండి, AI తో తెలుగు వాయిస్ హెచ్చరిక రాయండి, ప్రతి రైతుకు కాల్ స్థితి లైవ్‌గా చూడండి.",
@@ -225,17 +225,17 @@ export default function RythuConsole() {
         )}
         actions={
           <>
-            <Button variant="secondary" icon={<Sprout className="h-4 w-4" />} onClick={() => navigate("/rythu")}>{t("రైతు వీక్షణ", "Farmer view")}</Button>
-            <Button variant="ghost" icon={<RotateCcw className="h-4 w-4" />} loading={busy === "reset"} onClick={doReset}>{t("డెమో రీసెట్", "Reset demo")}</Button>
+            <Button variant="secondary" icon={<Sprout aria-hidden="true" className="h-4 w-4" />} onClick={() => navigate("/rythu")}>{t("రైతు వీక్షణ", "Farmer view")}</Button>
+            <Button variant="ghost" icon={<RotateCcw aria-hidden="true" className="h-4 w-4" />} loading={busy === "reset"} onClick={doReset}>{t("డెమో రీసెట్", "Reset demo")}</Button>
           </>
         }
       />
 
       <div className="mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label={t("పంపిన హెచ్చరికలు", "Alerts sent")} value={stats.sent} icon={<Megaphone className="h-4 w-4" />} tone="rythu" />
-        <Stat label={t("కాల్ చేసిన రైతులు", "Farmers called")} value={stats.called} icon={<PhoneCall className="h-4 w-4" />} />
-        <Stat label={t("విన్నవారు", "Listened")} value={`${stats.rate}%`} icon={<Users className="h-4 w-4" />} tone="low" />
-        <Stat label={t("ప్రమాద జిల్లాలు", "High-risk districts")} value={risk ? stats.high : "–"} hint={t("రాబోయే 3 రోజులు, లైవ్", "Next 3 days, live")} icon={<CloudRain className="h-4 w-4" />} tone={stats.high ? "critical" : "neutral"} />
+        <Stat label={t("పంపిన హెచ్చరికలు", "Alerts sent")} value={stats.sent} icon={<Megaphone aria-hidden="true" className="h-4 w-4" />} tone="rythu" />
+        <Stat label={t("కాల్ చేసిన రైతులు", "Farmers called")} value={stats.called} icon={<PhoneCall aria-hidden="true" className="h-4 w-4" />} />
+        <Stat label={t("విన్నవారు", "Listened")} value={`${stats.rate}%`} icon={<Users aria-hidden="true" className="h-4 w-4" />} tone="low" />
+        <Stat label={t("ప్రమాద జిల్లాలు", "High-risk districts")} value={risk ? stats.high : "–"} hint={t("రాబోయే 3 రోజులు, లైవ్", "Next 3 days, live")} icon={<CloudRain aria-hidden="true" className="h-4 w-4" />} tone={stats.high ? "critical" : "neutral"} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
@@ -243,7 +243,7 @@ export default function RythuConsole() {
           <div ref={formRef} className="scroll-mt-24" />
           <Card>
             <CardHeader
-              icon={<Megaphone className="h-5 w-5" />}
+              icon={<Megaphone aria-hidden="true" className="h-5 w-5" />}
               title={<span className={cn(te && "te")}>{t("హెచ్చరిక పంపండి", "Broadcast an alert")}</span>}
               subtitle={t("AI సందేశం రాస్తుంది; జిల్లాలోని ప్రతి రైతుకు వాయిస్ కాల్ వెళ్తుంది.", "AI writes the message; every farmer in the district gets a voice call.")}
             />
@@ -269,15 +269,15 @@ export default function RythuConsole() {
               {preview && !stale && (
                 <div className="animate-scale-in rounded-xl border border-rythu-200 bg-rythu-50 p-3.5">
                   <div className="flex items-start gap-3">
-                    <Button size="sm" accent="rythu" icon={<Play className="h-3.5 w-3.5" />} onClick={() => play(preview.audio)} disabled={!preview.audio}>{t("వినండి", "Play")}</Button>
+                    <Button size="sm" accent="rythu" icon={<Play aria-hidden="true" className="h-3.5 w-3.5" />} onClick={() => play(preview.audio)} disabled={!preview.audio}>{t("వినండి", "Play")}</Button>
                     <p className={cn("min-w-0 text-[15px] leading-relaxed text-ink", te && "te")}>{te ? preview.te : preview.en}</p>
                   </div>
                 </div>
               )}
-              {err && <p className="text-sm text-critical">{err}</p>}
+              {err && <p role="alert" className="text-sm text-critical">{err}</p>}
               <div className="flex flex-wrap gap-2">
-                <Button variant="secondary" icon={<Play className="h-4 w-4" />} loading={busy === "preview"} onClick={doPreview}>{t("AI తో ముందుగా చూడండి", "Preview with AI")}</Button>
-                <Button accent="rythu" icon={<Send className="h-4 w-4" />} loading={busy === "send"} onClick={doSend}>{t("రైతులకు పంపండి", "Send to farmers")}</Button>
+                <Button variant="secondary" icon={<Play aria-hidden="true" className="h-4 w-4" />} loading={busy === "preview"} onClick={doPreview}>{t("AI తో ముందుగా చూడండి", "Preview with AI")}</Button>
+                <Button accent="rythu" icon={<Send aria-hidden="true" className="h-4 w-4" />} loading={busy === "send"} onClick={doSend}>{t("రైతులకు పంపండి", "Send to farmers")}</Button>
               </div>
             </div>
           </Card>
@@ -289,7 +289,7 @@ export default function RythuConsole() {
           {alerts === null ? (
             <Card className="flex items-center gap-3 p-5 text-sm text-slate-500"><Spinner /> {t("లోడ్ అవుతోంది…", "Loading alerts…")}</Card>
           ) : alerts.length === 0 ? (
-            <Card><EmptyState icon={<Megaphone className="h-8 w-8" />} title={t("ఇంకా హెచ్చరికలు లేవు", "No alerts yet")} hint={t("పైన ఒకటి పంపండి.", "Preview and send one above.")} /></Card>
+            <Card><EmptyState icon={<Megaphone aria-hidden="true" className="h-8 w-8" />} title={t("ఇంకా హెచ్చరికలు లేవు", "No alerts yet")} hint={t("పైన ఒకటి పంపండి.", "Preview and send one above.")} /></Card>
           ) : (
             alerts.map((a) => <AlertCard key={a.id} a={a} />)
           )}
@@ -298,7 +298,7 @@ export default function RythuConsole() {
         <aside className="min-w-0 space-y-5">
           <Card>
             <CardHeader
-              icon={<CloudRain className="h-5 w-5" />}
+              icon={<CloudRain aria-hidden="true" className="h-5 w-5" />}
               title={<span className={cn(te && "te")}>{t("జిల్లా వాతావరణ ప్రమాదం", "District weather risk")}</span>}
               subtitle={t("రాబోయే 3 రోజులు · Open-Meteo (లైవ్)", "Next 3 days · Open-Meteo (live)")}
             />
@@ -350,7 +350,7 @@ export default function RythuConsole() {
             />
             {boardOff ? (
               <div className="m-4 flex items-start gap-3 rounded-2xl bg-amber-50 p-4 text-sm text-amber-900 ring-1 ring-amber-200">
-                <CloudRain className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+                <CloudRain aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
                 <div>
                   <div className="font-semibold">{t("లైవ్ మండీ ధరలు తాత్కాలికంగా అందుబాటులో లేవు", "Live mandi prices are temporarily unavailable")}</div>
                   <div className="mt-0.5 text-amber-800/90">{t("data.gov.in Agmarknet స్పందించడం లేదు. వాతావరణం, సలహా పని చేస్తాయి.", "The data.gov.in Agmarknet feed isn't responding. Weather and advice still work.")}</div>
@@ -360,7 +360,7 @@ export default function RythuConsole() {
               <div className="flex items-center gap-3 p-5 text-sm text-slate-500"><Spinner /> {t("లోడ్ అవుతోంది…", "Loading…")}</div>
             ) : !board.crops?.length ? (
               <EmptyState
-                icon={<Sprout className="h-8 w-8" />}
+                icon={<Sprout aria-hidden="true" className="h-8 w-8" />}
                 title={t("లైవ్ ధరలు ప్రస్తుతం అందుబాటులో లేవు", "Live mandi prices unavailable right now")}
                 hint={t("data.gov.in (Agmarknet) నుంచి ధరలు రాగానే ఇక్కడ కనిపిస్తాయి.", "Prices from data.gov.in (Agmarknet) appear here as soon as the feed responds.")}
               />

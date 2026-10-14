@@ -68,9 +68,9 @@ function VoicePicker({ compact }: { compact?: boolean }) {
         title="AI voice language"
         className="inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-slate-200 bg-white/90 px-3 text-sm font-semibold text-ink shadow-sm transition hover:border-slate-300 active:scale-95"
       >
-        <AudioLines className="h-4 w-4 text-primary" />
+        <AudioLines aria-hidden="true" className="h-4 w-4 text-primary" />
         {compact ? "Telugu" : "Voice: Telugu"}
-        <ChevronDown className={cn("h-3.5 w-3.5 text-slate-400 transition-transform", open && "rotate-180")} />
+        <ChevronDown aria-hidden="true" className={cn("h-3.5 w-3.5 text-slate-400 transition-transform", open && "rotate-180")} />
       </button>
       <AnimatePresence>
         {open && (
@@ -137,7 +137,7 @@ function LiveCallPill({ className }: { className?: string }) {
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-75" />
         <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
       </span>
-      <Phone className="h-3.5 w-3.5" />
+      <Phone aria-hidden="true" className="h-3.5 w-3.5" />
       {t("కాల్ పొందండి", "Get a call")}
     </NavLink>
   );
@@ -200,7 +200,7 @@ export function Layout({ children }: { children: ReactNode }) {
                       <motion.span layoutId="nav-active" className={cn("absolute inset-0 rounded-full", pillBg[n.accent])} transition={{ type: "spring", stiffness: 420, damping: 34 }} />
                     )}
                     <span className={cn("relative z-10 inline-flex items-center gap-1.5", isActive ? activeIcon[n.accent] : "text-slate-600 hover:text-ink")}>
-                      <n.icon className={cn("h-4 w-4", isActive ? activeIcon[n.accent] : "text-slate-400")} />
+                      <n.icon aria-hidden="true" className={cn("h-4 w-4", isActive ? activeIcon[n.accent] : "text-slate-400")} />
                       <span className="te">{t(n.te, n.en)}</span>
                     </span>
                   </>
@@ -217,7 +217,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 title="Get the Sahaya Android app"
                 className="hidden h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 text-sm font-semibold text-ink shadow-sm transition hover:border-slate-300 hover:shadow-md active:scale-95 md:inline-flex"
               >
-                <Smartphone className="h-4 w-4 text-green-600" />
+                <Smartphone aria-hidden="true" className="h-4 w-4 text-green-600" />
                 App
               </Link>
             )}
@@ -230,7 +230,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 aria-label={t("ఇన్‌స్టాల్", "Install app")}
                 className="hidden h-9 w-9 shrink-0 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 active:scale-95 xl:grid"
               >
-                <Download className="h-4 w-4" />
+                <Download aria-hidden="true" className="h-4 w-4" />
               </button>
             )}
             <button
@@ -240,7 +240,7 @@ export function Layout({ children }: { children: ReactNode }) {
               aria-label={menu ? "Close menu" : "Open menu"}
               aria-expanded={menu}
             >
-              {menu ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {menu ? <X aria-hidden="true" className="h-4 w-4" /> : <Menu aria-hidden="true" className="h-4 w-4" />}
             </button>
           </div>
         </motion.div>
@@ -264,7 +264,7 @@ export function Layout({ children }: { children: ReactNode }) {
                         cn("flex items-center gap-2.5 rounded-2xl px-3 py-3 text-sm font-semibold", isActive ? cn(pillBg[n.accent], activeIcon[n.accent]) : "text-slate-700 hover:bg-slate-50")
                       }
                     >
-                      <n.icon className="h-5 w-5" />
+                      <n.icon aria-hidden="true" className="h-5 w-5" />
                       <span className="te">{t(n.te, n.en)}</span>
                     </NavLink>
                   </motion.div>
@@ -279,7 +279,7 @@ export function Layout({ children }: { children: ReactNode }) {
                       download
                       className="flex items-center justify-center gap-2 rounded-2xl bg-ink py-3 text-sm font-semibold text-white transition active:scale-[.98]"
                     >
-                      <Smartphone className="h-4 w-4" />
+                      <Smartphone aria-hidden="true" className="h-4 w-4" />
                       Download Android app
                       <span className="font-medium text-white/60">· 15 MB</span>
                     </a>
@@ -292,7 +292,7 @@ export function Layout({ children }: { children: ReactNode }) {
                   onClick={() => void install()}
                   className="mt-1.5 flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-3 text-sm font-semibold text-white"
                 >
-                  <Download className="h-4 w-4" />
+                  <Download aria-hidden="true" className="h-4 w-4" />
                   {t("ఫోన్‌లో యాప్‌గా ఇన్‌స్టాల్ చేయండి", "Install as an app on your phone")}
                 </button>
               )}
@@ -345,7 +345,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 {NAV.slice(0, 4).map((n) => (
                   <li key={n.to}>
                     <Link to={n.to} className="focus-ring inline-flex items-center gap-2 rounded font-medium text-slate-600 transition hover:text-ink">
-                      <n.icon className={cn("h-4 w-4", activeIcon[n.accent])} />
+                      <n.icon aria-hidden="true" className={cn("h-4 w-4", activeIcon[n.accent])} />
                       {n.to === "/sos" ? "Disaster SOS" : n.to === "/arogya" ? "Arogya Call" : n.to === "/rythu" ? "Rythu Call" : "Scam Shield"}
                     </Link>
                   </li>
@@ -356,14 +356,14 @@ export function Layout({ children }: { children: ReactNode }) {
               <div className="text-xs font-bold uppercase tracking-[.14em] text-slate-400">App</div>
               {inApp ? (
                 <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-green-700">
-                  <Smartphone className="h-4 w-4" />
+                  <Smartphone aria-hidden="true" className="h-4 w-4" />
                   You're using the Sahaya app
                 </p>
               ) : (
                 <ul className="mt-4 space-y-2.5 text-sm">
                   <li>
                     <a href="/download/Sahaya-AI.apk" download className="focus-ring inline-flex items-center gap-2 rounded font-semibold text-ink transition hover:text-primary">
-                      <Smartphone className="h-4 w-4 text-green-600" />
+                      <Smartphone aria-hidden="true" className="h-4 w-4 text-green-600" />
                       Android app · 15 MB
                     </a>
                   </li>
@@ -414,7 +414,7 @@ export function Layout({ children }: { children: ReactNode }) {
               end={n.end}
               className={({ isActive }) => cn("flex flex-col items-center gap-0.5 py-2 text-[11px] font-semibold transition-colors", isActive ? activeIcon[n.accent] : "text-slate-500")}
             >
-              <n.icon className="h-5 w-5" />
+              <n.icon aria-hidden="true" className="h-5 w-5" />
               <span className="te max-w-full truncate px-1">{t(n.te, n.en)}</span>
             </NavLink>
           ))}

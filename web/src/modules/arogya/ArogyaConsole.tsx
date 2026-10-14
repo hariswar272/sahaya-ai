@@ -112,17 +112,17 @@ export default function ArogyaConsole() {
         en="ASHA dashboard: today's AI follow-up calls"
         eyebrow={t("ఆరోగ్య కాల్ · అధికారుల కన్సోల్", "Arogya Call · Officials console")}
         accent="arogya"
-        icon={<Stethoscope className="h-6 w-6" />}
+        icon={<Stethoscope aria-hidden="true" className="h-6 w-6" />}
         description={t(
           "AI కాల్ చేయాల్సిన ప్రతి పేషెంట్‌కు కాల్ చేసి, జవాబులు నమోదు చేసి, ఈరోజు ఎవరిని కలవాలో చూపిస్తుంది. ప్రతి అలర్ట్‌కు కారణం కూడా చూపిస్తుంది.",
           "The AI calls every due patient, records their answers and flags who needs a home visit today. Each flag shows the rule that raised it.",
         )}
         actions={
           <>
-            <Button accent="arogya" className="press" icon={<PhoneOutgoing className="h-4 w-4" />} loading={running} onClick={runCampaign}>
+            <Button accent="arogya" className="press" icon={<PhoneOutgoing aria-hidden="true" className="h-4 w-4" />} loading={running} onClick={runCampaign}>
               {running ? t("కాల్స్ చేస్తోంది…", "Calling patients…") : t("ఈరోజు కాల్స్ మొదలుపెట్టండి", "Run today's call campaign")}
             </Button>
-            <Button variant="secondary" className="press" icon={<RotateCcw className="h-4 w-4" />} onClick={resetDemo}>
+            <Button variant="secondary" className="press" icon={<RotateCcw aria-hidden="true" className="h-4 w-4" />} onClick={resetDemo}>
               {t("డెమో రీసెట్", "Reset demo")}
             </Button>
           </>
@@ -130,14 +130,14 @@ export default function ArogyaConsole() {
       />
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
-          <ShieldAlert className="h-3.5 w-3.5 text-arogya" />
+          <ShieldAlert aria-hidden="true" className="h-3.5 w-3.5 text-arogya" />
           {t("డెమో కన్సోల్ · రికార్డులు 48 గంటల తర్వాత ఆటోమేటిక్‌గా తొలగిపోతాయి", "Demo console · records auto-delete after 48 h")}
         </span>
         <Link to="/arogya" className="inline-flex items-center gap-1 text-sm font-semibold text-arogya-700 hover:underline">
-          {t("పేషెంట్‌గా కాల్ ప్రయత్నించండి", "Try a call as a patient")} <ExternalLink className="h-3.5 w-3.5" />
+          {t("పేషెంట్‌గా కాల్ ప్రయత్నించండి", "Try a call as a patient")} <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
         </Link>
         {note && <span className="text-sm font-medium text-amber-700">{note}</span>}
-        {error && <span className="text-sm font-medium text-red-700">{error}</span>}
+        {error && <span role="alert" className="text-sm font-medium text-red-700">{error}</span>}
       </div>
 
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -145,27 +145,27 @@ export default function ArogyaConsole() {
           label={t("పేషెంట్లు", "Patients")}
           value={stats ? <CountUp value={stats.patients} /> : "–"}
           hint={stats ? `ANC ${stats.byProgram.anc} · NCD ${stats.byProgram.ncd} · TB ${stats.byProgram.tb}` : undefined}
-          icon={<Users className="h-4 w-4" />}
+          icon={<Users aria-hidden="true" className="h-4 w-4" />}
         />
         <Stat
           label={t("ఈరోజు AI కాల్స్", "AI calls today")}
           value={stats ? <CountUp value={stats.callsToday} /> : "–"}
           hint={stats ? t(`${stats.dueNow} ఇప్పుడు చేయాలి`, `${stats.dueNow} due now`) : undefined}
-          icon={<PhoneCall className="h-4 w-4" />}
+          icon={<PhoneCall aria-hidden="true" className="h-4 w-4" />}
           tone="arogya"
         />
         <Stat
           label={t("ప్రమాదం ఎక్కువ", "High risk")}
           value={stats ? <CountUp value={stats.highRisk} /> : "–"}
           hint={t("ఈరోజే ASHA సందర్శన", "ASHA visit today")}
-          icon={<ShieldAlert className="h-4 w-4" />}
+          icon={<ShieldAlert aria-hidden="true" className="h-4 w-4" />}
           tone="high"
         />
         <Stat
           label={t("మందులు సక్రమంగా", "Medicine adherence")}
           value={stats ? <CountUp value={stats.adherencePct} suffix="%" /> : "–"}
           hint={t("తాజా కాల్స్ ప్రకారం", "from latest calls")}
-          icon={<Activity className="h-4 w-4" />}
+          icon={<Activity aria-hidden="true" className="h-4 w-4" />}
           tone="low"
         />
       </section>
@@ -199,12 +199,12 @@ export default function ArogyaConsole() {
             </div>
           ) : !patients.length ? (
             <EmptyState
-              icon={<PhoneCall className="h-8 w-8" />}
+              icon={<PhoneCall aria-hidden="true" className="h-8 w-8" />}
               title={t("ఇంకా కాల్స్ లేవు", "No patient calls yet")}
               hint={t("ఎవరైనా /arogya నుంచి కాల్ చేసిన వెంటనే వారు ఇక్కడ లైవ్‌గా కనిపిస్తారు.", "When someone talks to Sahaya on the Arogya page, their record appears here live.")}
             />
           ) : !list.length ? (
-            <EmptyState icon={<Users className="h-8 w-8" />} title="No patients match these filters" />
+            <EmptyState icon={<Users aria-hidden="true" className="h-8 w-8" />} title="No patients match these filters" />
           ) : (
             <ul className="divide-y divide-slate-100">
               {list.map((p, i) => (
@@ -236,7 +236,7 @@ export default function ArogyaConsole() {
 
         <div className="space-y-4">
           <Card>
-            <CardHeader title={t("తాజా కాల్స్ ప్రమాద స్థాయి", "Risk from latest calls")} subtitle={t("కాల్ అయిన వెంటనే మారుతుంది", "Live as calls finish")} icon={<Activity className="h-4 w-4" />} />
+            <CardHeader title={t("తాజా కాల్స్ ప్రమాద స్థాయి", "Risk from latest calls")} subtitle={t("కాల్ అయిన వెంటనే మారుతుంది", "Live as calls finish")} icon={<Activity aria-hidden="true" className="h-4 w-4" />} />
             <div className="h-48 px-2 py-3">
               {stats ? (
                 <ResponsiveContainer width="100%" height="100%">
@@ -263,7 +263,7 @@ export default function ArogyaConsole() {
             <CardHeader
               title={t("కాల్ క్యాంపెయిన్", "Call campaign")}
               subtitle={running ? t("AI పేషెంట్లకు కాల్ చేస్తోంది…", "AI is calling due patients…") : t("కాల్ చేయాల్సిన ప్రతి ఒక్కరికీ వరుసగా", "Calls every patient who is due, one after another")}
-              icon={<PhoneOutgoing className="h-4 w-4" />}
+              icon={<PhoneOutgoing aria-hidden="true" className="h-4 w-4" />}
             />
             <div className="max-h-[360px] overflow-y-auto px-4 py-3">
               {!events.length ? (
@@ -275,13 +275,13 @@ export default function ArogyaConsole() {
                     .map((e, i) => (
                       <li key={`${e.patientId}-${e.status}-${i}`} className="flex animate-slide-in-right items-start gap-2.5 text-sm">
                         {e.status === "calling" ? (
-                          <Loader2 className="mt-0.5 h-4 w-4 shrink-0 animate-spin text-arogya" />
+                          <Loader2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 animate-spin text-arogya" />
                         ) : e.status === "no_answer" ? (
-                          <PhoneMissed className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                          <PhoneMissed aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
                         ) : e.risk === "high" ? (
-                          <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-high" />
+                          <ShieldAlert aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-high" />
                         ) : (
-                          <CheckCircle2 className={cn("mt-0.5 h-4 w-4 shrink-0", e.risk === "medium" ? "text-medium" : "text-low")} />
+                          <CheckCircle2 aria-hidden="true" className={cn("mt-0.5 h-4 w-4 shrink-0", e.risk === "medium" ? "text-medium" : "text-low")} />
                         )}
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">
@@ -348,7 +348,7 @@ function PatientDrawer({ patient, programs, onClose }: { patient: Patient; progr
             </div>
           </div>
           <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-100" aria-label="Close">
-            <X className="h-5 w-5" />
+            <X aria-hidden="true" className="h-5 w-5" />
           </button>
         </div>
 
@@ -365,7 +365,7 @@ function PatientDrawer({ patient, programs, onClose }: { patient: Patient; progr
             </div>
           ) : (
             <>
-              <Button accent="arogya" size="lg" className="press w-full" icon={<PhoneCall className="h-5 w-5" />} onClick={() => setCalling(true)}>
+              <Button accent="arogya" size="lg" className="press w-full" icon={<PhoneCall aria-hidden="true" className="h-5 w-5" />} onClick={() => setCalling(true)}>
                 {t("ఇప్పుడే AI కాల్ చేయండి", "Call now (AI)")}
               </Button>
               {patient.lastCall && (

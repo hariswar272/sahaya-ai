@@ -122,13 +122,13 @@ export function CallDemo({ className }: { className?: string }) {
             <div className="flex w-full items-center justify-between px-4">
               <div className="flex flex-col items-center gap-1.5">
                 <span className="grid h-14 w-14 place-items-center rounded-full bg-critical text-white shadow-sm">
-                  <PhoneOff className="h-6 w-6" />
+                  <PhoneOff aria-hidden="true" className="h-6 w-6" />
                 </span>
                 <span className="te text-xs text-slate-500">{t("తిరస్కరించు", "Decline")}</span>
               </div>
               <div className="flex flex-col items-center gap-1.5">
                 <span className="grid h-14 w-14 animate-ring-pulse place-items-center rounded-full bg-green-600 text-white shadow-sm">
-                  <Phone className="h-6 w-6 animate-bounce" />
+                  <Phone aria-hidden="true" className="h-6 w-6 animate-bounce" />
                 </span>
                 <span className="te text-xs text-slate-500">{t("స్వీకరించు", "Accept")}</span>
               </div>
@@ -145,7 +145,7 @@ export function CallDemo({ className }: { className?: string }) {
                   {phase === "result" ? t("కాల్ పూర్తయింది", "Call complete") : t("కాల్‌లో ఉంది", "On call")} · {mm}:{ss}
                 </div>
               </div>
-              <Volume2 className="h-4 w-4 text-slate-400" />
+              <Volume2 aria-hidden="true" className="h-4 w-4 text-slate-400" />
             </div>
             <div className="flex items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-4 py-2">
               <span className={cn("text-[11px] font-semibold", speaking === "agent" ? "text-primary" : "text-green-700")}>
@@ -165,7 +165,7 @@ export function CallDemo({ className }: { className?: string }) {
               {phase === "result" && (
                 <div className="mt-1 animate-scale-in rounded-2xl border border-orange-200 bg-orange-50 p-3">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-high">
-                    <BellRing className="h-4 w-4" />
+                    <BellRing aria-hidden="true" className="h-4 w-4" />
                     ASHA alerted · High risk
                   </div>
                   <div className="mt-1 text-sm font-semibold text-ink">Danger signs: swelling + headache</div>
@@ -175,10 +175,10 @@ export function CallDemo({ className }: { className?: string }) {
             </div>
             <div className="flex items-center justify-center gap-6 border-t border-slate-100 py-3">
               <span className="grid h-11 w-11 place-items-center rounded-full bg-slate-100 text-slate-500">
-                <Mic className="h-5 w-5" />
+                <Mic aria-hidden="true" className="h-5 w-5" />
               </span>
               <span className="grid h-11 w-11 place-items-center rounded-full bg-critical text-white">
-                <PhoneOff className="h-5 w-5" />
+                <PhoneOff aria-hidden="true" className="h-5 w-5" />
               </span>
             </div>
           </div>

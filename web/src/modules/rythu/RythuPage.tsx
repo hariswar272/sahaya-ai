@@ -75,9 +75,9 @@ export default function RythuPage() {
 
   const districts = meta?.districts ?? FALLBACK_DISTRICTS;
   const tiles = [
-    { icon: <CloudSun className="h-5 w-5 text-sky-600" />, title: t("వాతావరణం", "Weather"), body: t("మీ జిల్లాకు 7 రోజుల లైవ్ అంచనా", "Live 7-day forecast for your district") },
-    { icon: <TrendingUp className="h-5 w-5 text-rythu-700" />, title: t("ధరలు, అమ్మకం", "Prices & selling"), body: t("రవాణా ఖర్చు తీసేశాక ఉత్తమ మార్కెట్, 3 రోజుల ధర అంచనా", "Best mandi after transport, with a 3-day price forecast") },
-    { icon: <Bug className="h-5 w-5 text-amber-600" />, title: t("పురుగులు", "Pests"), body: t("సురక్షితమైన మొదటి చర్యలు, తర్వాత రైతు సేవా కేంద్రం", "Safe first steps, then your Rythu Seva Kendram") },
+    { icon: <CloudSun aria-hidden="true" className="h-5 w-5 text-sky-600" />, title: t("వాతావరణం", "Weather"), body: t("మీ జిల్లాకు 7 రోజుల లైవ్ అంచనా", "Live 7-day forecast for your district") },
+    { icon: <TrendingUp aria-hidden="true" className="h-5 w-5 text-rythu-700" />, title: t("ధరలు, అమ్మకం", "Prices & selling"), body: t("రవాణా ఖర్చు తీసేశాక ఉత్తమ మార్కెట్, 3 రోజుల ధర అంచనా", "Best mandi after transport, with a 3-day price forecast") },
+    { icon: <Bug aria-hidden="true" className="h-5 w-5 text-amber-600" />, title: t("పురుగులు", "Pests"), body: t("సురక్షితమైన మొదటి చర్యలు, తర్వాత రైతు సేవా కేంద్రం", "Safe first steps, then your Rythu Seva Kendram") },
   ];
 
   return (
@@ -87,14 +87,14 @@ export default function RythuPage() {
         en="Rythu Call: a voice assistant for farmers"
         accent="rythu"
         variant="bold"
-        icon={<Sprout className="h-6 w-6" />}
+        icon={<Sprout aria-hidden="true" className="h-6 w-6" />}
         eyebrow={t("వ్యవసాయం", "Agriculture")}
         description={t(
           "వాతావరణం, మార్కెట్ ధరలు, పంట ఎక్కడ అమ్మాలి, పురుగుల సమస్యలు. మీ భాషలో అడగండి, మీ భాషలో సమాధానం.",
           "Ask by voice in Telugu: live weather, mandi price trends, the best market after transport cost, and safe pest guidance.",
         )}
         actions={
-          <Button variant="secondary" icon={<LayoutDashboard className="h-4 w-4" />} onClick={() => navigate("/console/rythu")}>
+          <Button variant="secondary" icon={<LayoutDashboard aria-hidden="true" className="h-4 w-4" />} onClick={() => navigate("/console/rythu")}>
             {t("వ్యవసాయ అధికారి కన్సోల్", "Agri officer console")}
           </Button>
         }
@@ -104,7 +104,7 @@ export default function RythuPage() {
 
       <div className="mb-5 flex flex-wrap items-center gap-3">
         <label className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600" htmlFor="rythu-place">
-          <MapPin className="h-4 w-4 text-rythu-700" />
+          <MapPin aria-hidden="true" className="h-4 w-4 text-rythu-700" />
           <span className={cn(te && "te")}>{t("మీ జిల్లా", "Your district")}</span>
         </label>
         <Select id="rythu-place" className="w-auto min-w-[200px]" value={place} onChange={(e) => setPlace(e.target.value)}>
@@ -156,7 +156,7 @@ export default function RythuPage() {
           ) : pricesOff ? (
             <Card className="flex animate-fade-up items-start gap-3 p-5 text-sm">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-50 text-amber-600 ring-1 ring-amber-200">
-                <TrendingUp className="h-5 w-5" />
+                <TrendingUp aria-hidden="true" className="h-5 w-5" />
               </span>
               <div>
                 <div className="font-semibold text-ink">{t("లైవ్ మండీ ధరలు తాత్కాలికంగా అందుబాటులో లేవు", "Live mandi prices are temporarily unavailable")}</div>

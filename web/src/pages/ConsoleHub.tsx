@@ -81,7 +81,7 @@ export default function ConsoleHub() {
         en="Officials' Console"
         description="Live dashboards for each lifeline. Every request arrives here in real time. Dashboards show simulated demo data."
         accent="primary"
-        icon={<LayoutDashboard className="h-6 w-6" />}
+        icon={<LayoutDashboard aria-hidden="true" className="h-6 w-6" />}
       />
 
       <Card className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3 text-sm">
@@ -119,7 +119,7 @@ export default function ConsoleHub() {
               <div className={cn("absolute inset-x-0 top-0 h-1", a.bg)} />
               <div className="flex items-start justify-between gap-3">
                 <div className={cn("grid h-11 w-11 place-items-center rounded-xl text-white", a.bg)}>
-                  <c.icon className="h-5 w-5" />
+                  <c.icon aria-hidden="true" className="h-5 w-5" />
                 </div>
                 {!ready && <Badge tone="neutral">{tr("Coming up")}</Badge>}
               </div>
@@ -129,7 +129,7 @@ export default function ConsoleHub() {
               <div className="mt-1 text-xs text-slate-400">{c.who}</div>
               <div className="mt-auto pt-5">
                 {ready ? (
-                  <ButtonLink to={c.to} accent={c.accent} icon={<ArrowRight className="h-4 w-4" />} className="flex-row-reverse">
+                  <ButtonLink to={c.to} accent={c.accent} icon={<ArrowRight aria-hidden="true" className="h-4 w-4" />} className="flex-row-reverse">
                     {t("కన్సోల్ తెరవండి", "Open console")}
                   </ButtonLink>
                 ) : (

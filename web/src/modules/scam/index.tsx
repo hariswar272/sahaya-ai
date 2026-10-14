@@ -8,7 +8,7 @@ const ScamConsole = lazy(() => import("./ScamConsole"));
 
 const Loading = () => (
   <div className="grid min-h-[50vh] place-items-center">
-    <Loader2 className="h-6 w-6 animate-spin text-slate-400" />
+    <Loader2 aria-hidden="true" className="h-6 w-6 animate-spin text-slate-400" />
   </div>
 );
 

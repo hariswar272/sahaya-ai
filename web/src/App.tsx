@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, type ComponentType } from "react";
 import { BrowserRouter, matchPath, Route, Routes, useLocation } from "react-router-dom";
+import { MotionConfig } from "framer-motion";
 import { LangProvider } from "@/lib/i18n";
 import { Layout } from "@/components/Layout";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -49,6 +50,7 @@ export default function App() {
   const screens = useMemo(() => Object.fromEntries(moduleIds.map((id) => [id, moduleScreen(id)])), []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <LangProvider>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
@@ -91,5 +93,6 @@ export default function App() {
         </Layout>
       </BrowserRouter>
     </LangProvider>
+    </MotionConfig>
   );
 }

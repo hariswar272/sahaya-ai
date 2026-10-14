@@ -48,17 +48,17 @@ export type Stats = {
 
 export const PROGRAM_UI: Record<ProgramId, { icon: ReactNode; te: string; en: string; short: string; asks: string; asksTe: string }> = {
   anc: {
-    icon: <Baby className="h-5 w-5" />, te: "గర్భిణీ సంరక్షణ", en: "Pregnancy care (ANC)", short: "Pregnancy care",
+    icon: <Baby aria-hidden="true" className="h-5 w-5" />, te: "గర్భిణీ సంరక్షణ", en: "Pregnancy care (ANC)", short: "Pregnancy care",
     asks: "Bleeding, swelling, headache or blurred vision, baby movements, iron tablets, next check-up",
     asksTe: "రక్తస్రావం, వాపు, తలనొప్పి / మసక చూపు, బిడ్డ కదలికలు, ఐరన్ మాత్రలు, తదుపరి చెకప్",
   },
   ncd: {
-    icon: <HeartPulse className="h-5 w-5" />, te: "బీపీ / షుగర్", en: "BP & diabetes (NCD)", short: "BP & diabetes",
+    icon: <HeartPulse aria-hidden="true" className="h-5 w-5" />, te: "బీపీ / షుగర్", en: "BP & diabetes (NCD)", short: "BP & diabetes",
     asks: "Tablets today, missed days, chest pain or dizziness, last sugar / BP reading",
     asksTe: "ఈరోజు మాత్రలు, మిస్ అయిన రోజులు, ఛాతీ నొప్పి / కళ్ళు తిరగడం, షుగర్ / బీపీ రీడింగ్",
   },
   tb: {
-    icon: <Pill className="h-5 w-5" />, te: "టీబీ చికిత్స", en: "TB treatment (DOTS)", short: "TB treatment",
+    icon: <Pill aria-hidden="true" className="h-5 w-5" />, te: "టీబీ చికిత్స", en: "TB treatment (DOTS)", short: "TB treatment",
     asks: "Daily tablets, missed doses, blood in cough, fever, yellow eyes or rash",
     asksTe: "రోజూ మాత్రలు, మిస్ అయిన డోసులు, దగ్గులో రక్తం, జ్వరం, కళ్ళు పసుపు / దద్దుర్లు",
   },
@@ -165,7 +165,7 @@ export function Reasons({ reasons, risk }: { reasons: string[]; risk: Risk | nul
     <ul className="space-y-1">
       {reasons.map((r) => (
         <li key={r} className="flex items-start gap-2 text-sm text-slate-700">
-          {risk === "low" ? <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-low" /> : <ShieldAlert className={cn("mt-0.5 h-4 w-4 shrink-0", risk === "high" ? "text-critical" : "text-medium")} />}
+          {risk === "low" ? <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-low" /> : <ShieldAlert aria-hidden="true" className={cn("mt-0.5 h-4 w-4 shrink-0", risk === "high" ? "text-critical" : "text-medium")} />}
           {r}
         </li>
       ))}

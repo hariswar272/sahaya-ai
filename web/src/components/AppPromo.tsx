@@ -99,7 +99,7 @@ export function AppPromo() {
               <Reveal key={p.text} delay={80 + i * 70}>
                 <li className="flex items-center gap-3">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white text-primary shadow-sm ring-1 ring-slate-200">
-                    <p.icon className="h-[18px] w-[18px]" />
+                    <p.icon aria-hidden="true" className="h-[18px] w-[18px]" />
                   </span>
                   <span className="text-[15px] font-medium text-slate-700">{p.text}</span>
                 </li>
@@ -110,7 +110,7 @@ export function AppPromo() {
           <Reveal delay={450}>
             {inApp ? (
               <div className="mt-8 inline-flex items-center gap-3 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-800">
-                <BadgeCheck className="h-6 w-6 text-green-600" />
+                <BadgeCheck aria-hidden="true" className="h-6 w-6 text-green-600" />
                 <span>
                   <span className="block font-bold">You're using the Sahaya app ✓</span>
                   <span className="block text-sm text-green-700">Share it with family: they can download it from sahaya.hmgenx.in</span>
@@ -126,10 +126,10 @@ export function AppPromo() {
                 >
                   <AndroidIcon className="h-6 w-6 text-[#3ddc84]" />
                   Download for Android
-                  <Download className="h-4 w-4 text-white/60" />
+                  <Download aria-hidden="true" className="h-4 w-4 text-white/60" />
                 </a>
                 <div className="mt-2 flex items-center gap-1.5 pl-1 text-xs font-medium text-slate-500">
-                  <ShieldCheck className="h-3.5 w-3.5 text-green-600" />
+                  <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5 text-green-600" />
                   15 MB · v1.0 · Android 7+
                 </div>
                 <div className="mt-4">
@@ -139,7 +139,7 @@ export function AppPromo() {
                       onClick={() => void install()}
                       className="inline-flex h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-ink shadow-sm transition hover:-translate-y-px hover:shadow-md active:scale-[.97]"
                     >
-                      <MonitorSmartphone className="h-4 w-4 text-primary" />
+                      <MonitorSmartphone aria-hidden="true" className="h-4 w-4 text-primary" />
                       Install web app
                     </button>
                   ) : (
@@ -177,7 +177,7 @@ export function AppPromo() {
             <Phone shot={SHOTS[1]} big className="absolute left-1/2 top-0 z-10 -translate-x-1/2" delay="0s" onReal={setReal} />
           </div>
           <div className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs font-semibold text-slate-500">
-            <BadgeCheck className="h-4 w-4 text-green-600" />
+            <BadgeCheck aria-hidden="true" className="h-4 w-4 text-green-600" />
             {real ? "Real screenshots from the Sahaya Android app" : "Screens from the Sahaya app"}
           </div>
         </motion.div>

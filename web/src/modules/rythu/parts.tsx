@@ -108,9 +108,9 @@ export function TrendIcon({ t, className }: { t: Trend; className?: string }) {
 }
 
 function WxIcon({ d }: { d: WxDay }) {
-  if (d.rain >= 5 || d.prob >= 60) return <CloudRain className="mx-auto h-6 w-6 text-sky-600" />;
-  if (d.prob >= 30) return <CloudSun className="mx-auto h-6 w-6 text-sky-500" />;
-  return <Sun className={cn("mx-auto h-6 w-6", d.tmax >= 38 ? "text-orange-500" : "text-amber-500")} />;
+  if (d.rain >= 5 || d.prob >= 60) return <CloudRain aria-hidden="true" className="mx-auto h-6 w-6 text-sky-600" />;
+  if (d.prob >= 30) return <CloudSun aria-hidden="true" className="mx-auto h-6 w-6 text-sky-500" />;
+  return <Sun aria-hidden="true" className={cn("mx-auto h-6 w-6", d.tmax >= 38 ? "text-orange-500" : "text-amber-500")} />;
 }
 
 /* ----------------------------------------------------------- WeatherStrip */
@@ -123,7 +123,7 @@ export function WeatherStrip({ w }: { w: Weather }) {
   return (
     <Card>
       <CardHeader
-        icon={<CloudSun className="h-5 w-5" />}
+        icon={<CloudSun aria-hidden="true" className="h-5 w-5" />}
         title={<span className={cn(te && "te")}>{t(`${w.placeTe} వాతావరణం`, `${w.place} weather`)} <span className="font-medium text-slate-500">· {t("7 రోజులు", "7 days")}</span></span>}
         action={<Badge tone={RISK_TONE[w.risk]}>{t(RISK_LABEL[w.risk][0], RISK_LABEL[w.risk][1])}</Badge>}
       />
@@ -143,9 +143,9 @@ export function WeatherStrip({ w }: { w: Weather }) {
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-slate-100 px-4 py-2.5 text-xs text-slate-600">
-        <span className="inline-flex items-center gap-1"><CloudRain className="h-3.5 w-3.5" /> {t("రాబోయే 3 రోజులు", "Next 3 days")}: {w.next3.totalRain} mm</span>
-        <span className="inline-flex items-center gap-1"><Thermometer className="h-3.5 w-3.5" /> Max {w.next3.maxTemp}°C</span>
-        <span className="inline-flex items-center gap-1"><Wind className="h-3.5 w-3.5" /> {w.next3.maxWind} km/h</span>
+        <span className="inline-flex items-center gap-1"><CloudRain aria-hidden="true" className="h-3.5 w-3.5" /> {t("రాబోయే 3 రోజులు", "Next 3 days")}: {w.next3.totalRain} mm</span>
+        <span className="inline-flex items-center gap-1"><Thermometer aria-hidden="true" className="h-3.5 w-3.5" /> Max {w.next3.maxTemp}°C</span>
+        <span className="inline-flex items-center gap-1"><Wind aria-hidden="true" className="h-3.5 w-3.5" /> {w.next3.maxWind} km/h</span>
         <span className="ml-auto text-slate-400">{w.source}</span>
       </div>
     </Card>
@@ -184,7 +184,7 @@ export function PriceChart({ p, highlight }: { p: CropPrices; highlight?: string
   return (
     <Card>
       <CardHeader
-        icon={<TrendingUp className="h-5 w-5" />}
+        icon={<TrendingUp aria-hidden="true" className="h-5 w-5" />}
         title={<span className={cn(te && "te")}>{t(`${p.te} ధరలు`, `${cap(p.crop)} prices`)} <span className="font-medium text-slate-500">· ₹/{t("క్వింటా", "quintal")}</span></span>}
         subtitle={
           hasSeries
@@ -294,7 +294,7 @@ export function AdviceCard({ a }: { a: Advice }) {
       <dl className="grid grid-cols-2 gap-px bg-slate-100 text-sm">
         {[
           [t("అంచనా ధర", "Expected price"), `${rupee(b.price)}/qtl`],
-          [<span key="t" className="inline-flex items-center gap-1"><Truck className="h-3.5 w-3.5" /> {t("రవాణా", "Transport")}</span>, `${rupee(b.transport)}/qtl · ${b.km} km`],
+          [<span key="t" className="inline-flex items-center gap-1"><Truck aria-hidden="true" className="h-3.5 w-3.5" /> {t("రవాణా", "Transport")}</span>, `${rupee(b.transport)}/qtl · ${b.km} km`],
           [t("రవాణా తర్వాత నికరం", "Net after transport"), `${rupee(b.net)}/qtl`],
           [t("నుండి", "From"), te ? a.placeTe : a.place],
         ].map(([k, v], i) => (

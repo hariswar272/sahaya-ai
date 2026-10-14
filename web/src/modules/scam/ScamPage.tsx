@@ -111,7 +111,7 @@ export default function ScamPage() {
   const tabs = [
     {
       id: "paste",
-      icon: <ClipboardPaste className="h-4 w-4" />,
+      icon: <ClipboardPaste aria-hidden="true" className="h-4 w-4" />,
       label: tabLabel("మెసేజ్", "Paste message"),
       content: (
         <div className="space-y-3">
@@ -121,6 +121,7 @@ export default function ScamPage() {
             placeholder={t("అనుమానాస్పద SMS / WhatsApp మెసేజ్ ఇక్కడ పేస్ట్ చేయండి…", "Paste the suspicious SMS or WhatsApp message here…")}
             className="te min-h-[140px]"
             maxLength={4000}
+            aria-label={t("అనుమానాస్పద మెసేజ్", "Suspicious message")}
           />
           <div className="flex flex-wrap items-center gap-2">
             <Select value={source} onChange={(e) => setSource(e.target.value as Source)} className="h-10 w-auto min-w-[150px]" aria-label={t("ఎక్కడ వచ్చింది?", "Where did you get it?")}>
@@ -130,7 +131,7 @@ export default function ScamPage() {
                 </option>
               ))}
             </Select>
-            <Button accent="scam" size="lg" className="flex-1 sm:flex-none" loading={busy} disabled={!text.trim()} icon={<ShieldAlert className="h-5 w-5" />} onClick={() => check({ text, source })}>
+            <Button accent="scam" size="lg" className="flex-1 sm:flex-none" loading={busy} disabled={!text.trim()} icon={<ShieldAlert aria-hidden="true" className="h-5 w-5" />} onClick={() => check({ text, source })}>
               {t("చెక్ చేయండి", "Check now")}
             </Button>
           </div>
@@ -154,7 +155,7 @@ export default function ScamPage() {
                       s.safe ? "border-green-200 bg-green-50 text-green-700 hover:bg-green-100" : "border-scam-200 bg-scam-50 text-scam-700 hover:bg-scam-100",
                     )}
                   >
-                    {s.safe && <Check className="-mt-0.5 mr-1 inline h-3.5 w-3.5" />}
+                    {s.safe && <Check aria-hidden="true" className="-mt-0.5 mr-1 inline h-3.5 w-3.5" />}
                     {t(s.label.te, s.label.en)}
                   </button>
                 );
@@ -166,11 +167,11 @@ export default function ScamPage() {
     },
     {
       id: "shot",
-      icon: <Upload className="h-4 w-4" />,
+      icon: <Upload aria-hidden="true" className="h-4 w-4" />,
       label: tabLabel("స్క్రీన్‌షాట్", "Screenshot"),
       content: (
         <div className="space-y-3">
-          <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => pickFile(e.target.files?.[0])} />
+          <input ref={fileRef} type="file" accept="image/*" className="hidden" aria-label={t("స్క్రీన్‌షాట్ ఎంచుకోండి", "Choose a screenshot")} onChange={(e) => pickFile(e.target.files?.[0])} />
           {shot ? (
             <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
               <img src={shot.preview} alt={t("చెక్ చేయాల్సిన స్క్రీన్‌షాట్", "Screenshot to check")} className="mx-auto max-h-80 w-auto object-contain" />
@@ -180,7 +181,7 @@ export default function ScamPage() {
                 className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-slate-600 shadow hover:bg-white"
                 aria-label={t("తీసివేయండి", "Remove screenshot")}
               >
-                <X className="h-4 w-4" />
+                <X aria-hidden="true" className="h-4 w-4" />
               </button>
             </div>
           ) : (
@@ -194,7 +195,7 @@ export default function ScamPage() {
               }}
               className="flex w-full flex-col items-center gap-2 rounded-2xl border-2 border-dashed border-scam-200 bg-scam-50/50 px-4 py-10 text-center transition hover:border-scam-500 hover:bg-scam-50"
             >
-              <Upload className="h-8 w-8 text-scam" />
+              <Upload aria-hidden="true" className="h-8 w-8 text-scam" />
               <span className="te font-semibold text-ink">{t("స్క్రీన్‌షాట్ ఎంచుకోండి", "Choose a screenshot")}</span>
               <span className="text-sm text-slate-500">{t("SMS, చాట్ లేదా పేమెంట్ రిక్వెస్ట్ స్క్రీన్‌షాట్", "Pick or drop a screenshot of the SMS, chat or payment request")}</span>
             </button>
@@ -205,7 +206,7 @@ export default function ScamPage() {
             className="w-full"
             loading={busy}
             disabled={!shot}
-            icon={<Sparkles className="h-5 w-5" />}
+            icon={<Sparkles aria-hidden="true" className="h-5 w-5" />}
             onClick={() => shot && check({ imageBase64: shot.b64, mime: shot.mime, source: "other" })}
           >
             {t("AI తో చదివి చెక్ చేయండి", "Read & check with AI")}
@@ -216,7 +217,7 @@ export default function ScamPage() {
     },
     {
       id: "voice",
-      icon: <Mic className="h-4 w-4" />,
+      icon: <Mic aria-hidden="true" className="h-4 w-4" />,
       label: tabLabel("వాయిస్", "Describe by voice"),
       content: (
         <div className="space-y-2">
@@ -249,7 +250,7 @@ export default function ScamPage() {
         <div className="relative flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/25 sm:h-14 sm:w-14">
-              <ShieldAlert className="h-6 w-6 sm:h-7 sm:w-7" />
+              <ShieldAlert aria-hidden="true" className="h-6 w-6 sm:h-7 sm:w-7" />
             </span>
             <div>
               <div className="mb-1 text-[11px] font-bold uppercase tracking-wider text-white/80">{t("డిజిటల్ భద్రత · స్కామ్ షీల్డ్", "Digital safety · Scam Shield")}</div>
@@ -267,7 +268,7 @@ export default function ScamPage() {
             href="tel:1930"
             className="press inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-scam-700 shadow-sm transition hover:bg-violet-50"
           >
-            <Phone className="h-4 w-4" />
+            <Phone aria-hidden="true" className="h-4 w-4" />
             1930 · {t("సైబర్ హెల్ప్‌లైన్", "Cyber helpline")}
           </a>
         </div>
@@ -285,7 +286,7 @@ export default function ScamPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
         <Card id="scam-check" className="min-w-0 scroll-mt-24 animate-fade-up [animation-delay:80ms]">
           <CardHeader
-            icon={<ShieldAlert className="h-5 w-5 text-scam" />}
+            icon={<ShieldAlert aria-hidden="true" className="h-5 w-5 text-scam" />}
             title={<span className="te">{t("ఏం చెక్ చేయాలి?", "What do you want to check?")}</span>}
             subtitle={sub("Paste a message, upload a screenshot, or describe a call") ?? t("", "Paste a message, upload a screenshot, or describe a call")}
           />
@@ -293,7 +294,7 @@ export default function ScamPage() {
             <Tabs tabs={tabs} value={tab} onChange={setTab} accent="scam" />
             {error && (
               <div className="mt-3 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-700" role="alert">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+                <AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
                 <span className="te">{error}</span>
               </div>
             )}
@@ -307,7 +308,7 @@ export default function ScamPage() {
 
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-soft">
         <span className="flex items-center gap-2">
-          <Lock className="h-4 w-4 shrink-0 text-slate-400" />
+          <Lock aria-hidden="true" className="h-4 w-4 shrink-0 text-slate-400" />
           <span className="te">
             {t("మీ మెసేజ్ సేవ్ చేయము: మోసం రకం మాత్రమే అనామకంగా లెక్కిస్తాం.", "We never store your message, only an anonymous count of the scam type.")}
           </span>
@@ -341,12 +342,12 @@ function ResultCard({ result, audio, player }: { result: ScamResult; audio: stri
   }, [result.confidence]);
 
   return (
-    <Card className="animate-scale-in overflow-hidden">
+    <Card className="animate-scale-in overflow-hidden" role="status" aria-live="polite">
       <div className={cn("bg-gradient-to-br p-5 text-white", v.banner)}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             <span className={cn("grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/15", result.verdict === "scam" && "animate-pulse-ring")}>
-              <Icon className="h-8 w-8" />
+              <Icon aria-hidden="true" className="h-8 w-8" />
             </span>
             <div>
               <div className="te text-2xl font-extrabold leading-tight sm:text-3xl">{verdictText}</div>
@@ -360,7 +361,7 @@ function ResultCard({ result, audio, player }: { result: ScamResult; audio: stri
               className="press inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-white/15 px-3 py-2 text-sm font-semibold hover:bg-white/25"
               aria-label={playing ? "Stop" : "Listen in Telugu"}
             >
-              {playing ? <Square className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+              {playing ? <Square aria-hidden="true" className="h-4 w-4" /> : <Volume2 aria-hidden="true" className="h-4 w-4" />}
               <span>{playing ? "Stop" : "Listen in Telugu"}</span>
             </button>
           )}
@@ -387,7 +388,7 @@ function ResultCard({ result, audio, player }: { result: ScamResult; audio: stri
             <ul className="space-y-1.5">
               {result.red_flags.map((f, i) => (
                 <li key={i} className="flex animate-fade-up items-start gap-2.5 rounded-xl bg-slate-50 px-3 py-2" style={{ animationDelay: `${180 + i * 70}ms` }}>
-                  <AlertTriangle className={cn("mt-0.5 h-4 w-4 shrink-0", result.verdict === "safe" ? "text-slate-400" : "text-high")} />
+                  <AlertTriangle aria-hidden="true" className={cn("mt-0.5 h-4 w-4 shrink-0", result.verdict === "safe" ? "text-slate-400" : "text-high")} />
                   <span className="min-w-0 flex-1">
                     <span className="te block text-[15px] font-medium text-ink">{pick(f)}</span>
                     {sub(f.en, pick(f)) && <span className="block text-xs text-slate-500">{f.en}</span>}
@@ -414,9 +415,9 @@ function ResultCard({ result, audio, player }: { result: ScamResult; audio: stri
         )}
 
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          <ActionLink href="tel:1930" icon={<Phone className="h-4 w-4" />} label={t("1930 కి కాల్", "Call 1930")} strong={result.verdict !== "safe"} />
-          <ActionLink href="https://cybercrime.gov.in" external icon={<ExternalLink className="h-4 w-4" />} label={t("ఆన్‌లైన్ ఫిర్యాదు", "Report online")} />
-          <ActionLink href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} external icon={<Share2 className="h-4 w-4" />} label={t("ఇంట్లో చెప్పండి", "Alert family")} />
+          <ActionLink href="tel:1930" icon={<Phone aria-hidden="true" className="h-4 w-4" />} label={t("1930 కి కాల్", "Call 1930")} strong={result.verdict !== "safe"} />
+          <ActionLink href="https://cybercrime.gov.in" external icon={<ExternalLink aria-hidden="true" className="h-4 w-4" />} label={t("ఆన్‌లైన్ ఫిర్యాదు", "Report online")} />
+          <ActionLink href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} external icon={<Share2 aria-hidden="true" className="h-4 w-4" />} label={t("ఇంట్లో చెప్పండి", "Alert family")} />
           <button
             type="button"
             onClick={async () => {
@@ -430,7 +431,7 @@ function ResultCard({ result, audio, player }: { result: ScamResult; audio: stri
             }}
             className="press flex flex-col items-center justify-center gap-1 rounded-xl border border-slate-200 bg-white px-2 py-2.5 text-center shadow-sm transition hover:bg-slate-50"
           >
-            {copied ? <Check className="h-4 w-4 text-low" /> : <Copy className="h-4 w-4 text-slate-500" />}
+            {copied ? <Check aria-hidden="true" className="h-4 w-4 text-low" /> : <Copy aria-hidden="true" className="h-4 w-4 text-slate-500" />}
             <span className="te text-sm font-semibold text-ink">{copied ? t("కాపీ అయింది", "Copied") : t("అలర్ట్ కాపీ", "Copy alert")}</span>
           </button>
         </div>
@@ -470,7 +471,7 @@ function Advice({ title, items, good }: { title: string; items: Pair[]; good?: b
       <ul className="space-y-2">
         {items.map((x, i) => (
           <li key={i} className="flex items-start gap-2">
-            {good ? <Check className="mt-0.5 h-4 w-4 shrink-0 text-low" /> : <X className="mt-0.5 h-4 w-4 shrink-0 text-critical" />}
+            {good ? <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-low" /> : <X aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-critical" />}
             <span>
               <span className="te block text-[15px] leading-snug text-ink">{pick(x)}</span>
               {sub(x.en, pick(x)) && <span className="block text-xs text-slate-500">{x.en}</span>}
@@ -501,14 +502,14 @@ function ActionLink({ href, icon, label, external, strong }: { href: string; ico
 function HowItWorks() {
   const { t } = useText();
   const steps: [ReactNode, string, string][] = [
-    [<ClipboardPaste key="a" className="h-5 w-5" />, "మెసేజ్ పేస్ట్ చేయండి, స్క్రీన్‌షాట్ ఇవ్వండి లేదా కాల్ గురించి చెప్పండి", "Paste the message, upload a screenshot, or describe the call"],
-    [<ShieldAlert key="b" className="h-5 w-5" />, "20+ తెలిసిన మోసం నియమాలు + AI కలిసి చెక్ చేస్తాయి", "20+ known-scam rules and the AI check it together. The stricter verdict wins."],
-    [<Volume2 key="c" className="h-5 w-5" />, "మీ భాషలో గట్టిగా వివరిస్తుంది, ఏం చేయాలో చెబుతుంది", "Explains aloud in Telugu and tells you exactly what to do"],
-    [<Share2 key="d" className="h-5 w-5" />, "1930 కి ఫిర్యాదు, కుటుంబానికి వాట్సాప్ అలర్ట్", "One tap to call 1930, report online, or warn your family"],
+    [<ClipboardPaste aria-hidden="true" key="a" className="h-5 w-5" />, "మెసేజ్ పేస్ట్ చేయండి, స్క్రీన్‌షాట్ ఇవ్వండి లేదా కాల్ గురించి చెప్పండి", "Paste the message, upload a screenshot, or describe the call"],
+    [<ShieldAlert aria-hidden="true" key="b" className="h-5 w-5" />, "20+ తెలిసిన మోసం నియమాలు + AI కలిసి చెక్ చేస్తాయి", "20+ known-scam rules and the AI check it together. The stricter verdict wins."],
+    [<Volume2 aria-hidden="true" key="c" className="h-5 w-5" />, "మీ భాషలో గట్టిగా వివరిస్తుంది, ఏం చేయాలో చెబుతుంది", "Explains aloud in Telugu and tells you exactly what to do"],
+    [<Share2 aria-hidden="true" key="d" className="h-5 w-5" />, "1930 కి ఫిర్యాదు, కుటుంబానికి వాట్సాప్ అలర్ట్", "One tap to call 1930, report online, or warn your family"],
   ];
   return (
     <Card className="animate-fade-up h-full [animation-delay:140ms]">
-      <CardHeader icon={<Sparkles className="h-5 w-5 text-scam" />} title={<span className="te">{t("ఎలా పని చేస్తుంది?", "How Scam Shield works")}</span>} />
+      <CardHeader icon={<Sparkles aria-hidden="true" className="h-5 w-5 text-scam" />} title={<span className="te">{t("ఎలా పని చేస్తుంది?", "How Scam Shield works")}</span>} />
       <ol className="space-y-3 p-5">
         {steps.map(([icon, te, en], i) => (
           <li key={i} className="flex animate-fade-up items-start gap-3" style={{ animationDelay: `${200 + i * 80}ms` }}>

@@ -103,10 +103,11 @@ node scripts/smoke.mjs http://127.0.0.1:4200
 ## Testing
 
 ```bash
-cd server && npm test                          # 21 unit tests: SOS triage rules, place matching, scam rule engine, language codes
+cd server && npm test                          # 69 offline unit tests (node:test), no API keys needed
 node scripts/smoke.mjs https://sahaya.hmgenx.in   # end-to-end: every module's API, a full voice-call flow, audio checks
 ```
 
+* **Unit tests** cover the conversation engine (`lib/flow.mjs`, with the AI, voice and session layers injected as stubs), SOS triage and place matching, Arogya danger-sign rules and answer parsing, Rythu weather risk, sell advice and Agmarknet parsing, Scam Shield rules and the rule/AI merge (an AI "safe" reply can never downgrade a rule-detected scam), the tolerant JSON parser and the rate limiter.
 * GitHub Actions CI (`.github/workflows/ci.yml`) runs the server tests and the web typecheck + production build on every push.
 * Real-voice QA: Telugu caller audio was played into the live site through a simulated microphone and on a real Android phone, checking transcripts, AI answers, spoken replies and the final result for every module.
 

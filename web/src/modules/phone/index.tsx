@@ -179,7 +179,7 @@ function PhoneConsole() {
         en="Real phone call with the AI agent"
         accent="primary"
         eyebrow={t("నిజమైన కాల్స్ · తెలుగు AI ఏజెంట్", "Real calls · Telugu AI agent")}
-        icon={<PhoneCall className="h-6 w-6" />}
+        icon={<PhoneCall aria-hidden="true" className="h-6 w-6" />}
         description={t(
           "బ్రౌజర్ డెమోలోని అదే తెలుగు AI ఏజెంట్ నిజమైన ఫోన్‌కి కాల్ చేస్తుంది. అనుమతించిన డెమో నంబర్లకు మాత్రమే.",
           "The same Telugu AI agent from the browser demo calls a real phone. Only verified demo numbers can be dialled.",
@@ -191,13 +191,13 @@ function PhoneConsole() {
           <Card className="animate-fade-up">
             <CardHeader
               title={<Bi te="కాలింగ్ స్థితి" en="Calling status" />}
-              icon={<Radio className="h-4 w-4" />}
+              icon={<Radio aria-hidden="true" className="h-4 w-4" />}
               action={status ? <Badge tone={ready ? "success" : "warning"}>{providerName}</Badge> : <Spinner />}
             />
             <div className="space-y-2 px-4 py-4 text-sm sm:px-5">
               {status && !ready && (
                 <div className="flex gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-amber-900">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+                  <AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
                   <div>
                     {t("ఈ సర్వర్‌లో నిజమైన కాల్స్ ఆఫ్ లో ఉన్నాయి.", "Real calls are switched off on this server.")}
                     {status.missing?.length ? ` ${t("కావాల్సినవి", "Missing")}: ${status.missing.join(", ")}.` : ` ${t("సర్వర్ env లో Samvaad లేదా Plivo సెట్టింగ్స్ జోడించండి.", "Add the Samvaad or Plivo settings to the server environment.")}`}{" "}
@@ -226,7 +226,7 @@ function PhoneConsole() {
           </Card>
 
           <Card className="animate-fade-up">
-            <CardHeader title={<Bi te="AI తో కాల్ చేయండి" en="Place an AI call" />} icon={<ShieldCheck className="h-4 w-4" />} />
+            <CardHeader title={<Bi te="AI తో కాల్ చేయండి" en="Place an AI call" />} icon={<ShieldCheck aria-hidden="true" className="h-4 w-4" />} />
             <div className="space-y-3 px-4 py-4 sm:px-5">
               <label className="block text-sm font-medium text-slate-600">
                 {t("సేవ", "Flow")}
@@ -258,11 +258,11 @@ function PhoneConsole() {
                   <Input inputMode="tel" placeholder="98XXXXXXXX" value={to} onChange={(e) => setTo(e.target.value)} />
                 </div>
               </label>
-              {error && <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800 animate-fade-up">{error}</div>}
+              {error && <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800 animate-fade-up">{error}</div>}
               <Button
                 size="lg"
                 className="press w-full"
-                icon={<PhoneCall className="h-4 w-4" />}
+                icon={<PhoneCall aria-hidden="true" className="h-4 w-4" />}
                 loading={busy}
                 disabled={!ready || !to.trim() || (flow === "arogya" && !patientId)}
                 onClick={place}
@@ -287,10 +287,10 @@ function PhoneConsole() {
                 {isLive && <Wave />}
               </span>
             }
-            icon={<PhoneCall className="h-4 w-4" />}
+            icon={<PhoneCall aria-hidden="true" className="h-4 w-4" />}
             action={
               isLive && live?.provider === "plivo" ? (
-                <Button size="sm" variant="danger" className="press" icon={<PhoneOff className="h-4 w-4" />} onClick={() => end(live.id)}>
+                <Button size="sm" variant="danger" className="press" icon={<PhoneOff aria-hidden="true" className="h-4 w-4" />} onClick={() => end(live.id)}>
                   {t("ముగించు", "End")}
                 </Button>
               ) : null
@@ -299,7 +299,7 @@ function PhoneConsole() {
           <div className="px-4 py-4 sm:px-5">
             {!live ? (
               <EmptyState
-                icon={<PhoneCall className="h-10 w-10" />}
+                icon={<PhoneCall aria-hidden="true" className="h-10 w-10" />}
                 title={t("ఇంకా కాల్ లేదు", "No call yet")}
                 hint={t(
                   "కాల్ చేసి ఇక్కడ చూడండి: రింగ్, ప్రతి సంభాషణ మలుపు, డాష్‌బోర్డ్‌లకు వెళ్ళే ఫలితం.",
@@ -317,7 +317,7 @@ function PhoneConsole() {
                 {live.error && <div className="mt-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800 animate-fade-up">{live.error}</div>}
                 {resultLine(live.result) && (
                   <div className="mt-3 flex items-start gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900 animate-fade-up">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+                    <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
                     {resultLine(live.result)}
                   </div>
                 )}
